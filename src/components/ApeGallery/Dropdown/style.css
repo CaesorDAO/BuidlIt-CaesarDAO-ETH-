@@ -1,0 +1,52 @@
+/* .select-dropdown div div {
+  height: 130px;
+  max-height: 130px;
+  overflow-y: scroll;
+  color: aliceblue !important;
+} */
+/* 
+.form {
+  color: red !important;
+} */
+
+.input {
+  color: white !important;
+  font-family: "Roboto"  !important;
+  font-size: 16px !important;
+ 
+}
+
+/* .select {
+  color: aliceblue !important;
+} */
+
+.MuiPaper-root {
+  /* border-radius: 0px !important; */
+  background-color: #1b1b1b !important;
+  font-family: "Roboto"  !important;
+  
+}
+
+.MuiList-root {
+  background-color: #1b1b1b;
+  font-family: "Roboto"  !important;
+
+  /* border-radius: 0px !important; */
+}
+
+.MuiMenu-list {
+  color: white;
+  font-family: "Roboto"  !important;
+}
+
+.MuiMenu-list li:hover {
+  background-color: #2c2f33;
+  font-family: "Roboto"  !important;
+
+}
+
+.MuiInputBase-input {
+  color: grey !important;
+  font-family: "Roboto"  !important;
+
+}

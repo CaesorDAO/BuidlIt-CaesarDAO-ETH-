@@ -1,0 +1,188 @@
+{
+  "clothes": {
+    "common": [
+      "bali.png",
+      "black_and_white_hoodie.png",
+      "black_purple_hoodie.png",
+      "california.png",
+      "crypto_lords.png",
+      "crypto_millionaire.png",
+      "dungaree.png",
+      "evolution_of_money.png",
+      "green_hoodie.png",
+      "keep_calm_and_mine_bitcoin.png",
+      "miami.png",
+      "plan_B.png",
+      "stripes.png",
+      "sweater.png",
+      "to_the_moon.png",
+      "t_shirt.png",
+      "unbank_yourself.png",
+      "under_garment.png"
+    ],
+    "uncommon": [
+      "apron.png",
+      "biker_jacket.png",
+      "black_overhead_hoodie.png",
+      "crypto_winter.png",
+      "jacket.png",
+      "school_uniform.png",
+      "smooth_jacket.png",
+      "sports_jersey.png",
+      "wall_street_suit.png",
+      "white_overhead_hoodie.png"
+    ],
+    "rare": [
+      "diamond_hands.png",
+      "disclaimer.png",
+      "gold_hoodie.png",
+      "lets_get_rich.png",
+      "tax_the_rich.png"
+    ],
+    "mythical": [34, 35, 36]
+  },
+  "skin": {
+    "common": [
+      "black.png",
+      "black_camouflage.png",
+      "brown.png",
+      "burned.png",
+      "lavender.png",
+      "leopard.png",
+      "light_blue.png",
+      "light_brown.png",
+      "light_green.png",
+      "off_white.png",
+      "orange.png",
+      "pale.png",
+      "pink.png",
+      "purple.png",
+      "velvet.png",
+      "wood_texture.png"
+    ],
+    "uncommon": [
+      "leopard_print.png",
+      "neon_green.png",
+      "pink_design.png",
+      "scales.png",
+      "swimming_pool.png",
+      "technicolor_1.png",
+      "technicolor_2.png",
+      "zebra.png"
+    ],
+    "rare": ["gold.png", "lightning_bolt.png"],
+    "mythical": ["chewbacca.png"]
+  },
+  "headwear": {
+    "common": [
+      "bamboo_farmer_hat.png",
+      "band_leader_hat.png",
+      "beanie.png",
+      "boxing_headgear.png",
+      "cap.png",
+      "chef_hat.png",
+      "doraemon_helicopter.png",
+      "gladiator.png",
+      "hat.png",
+      "helmet.png",
+      "sherlock_hat.png",
+      "tinfoil_hat.png"
+    ],
+    "uncommon": [
+      "angel.png",
+      "covered_football_headgear.png",
+      "cycling_helmet.png",
+      "football_headgear.png",
+      "kernel_hat.png",
+      "overhead_headphones.png",
+      "reverse_cap.png"
+    ],
+    "rare": ["sci_fi_mask.png", "chernobyl_mask.png", "ancient_hat.png"],
+    "mythical": ["marshmello.png", "predator.png"]
+  },
+  "mouth": {
+    "common": [
+      "anime.png",
+      "baseball_bat.png",
+      "dirty_fiat.png",
+      "gold_plated_teeth.png",
+      "grenade.png",
+      "gritty_teeth.png",
+      "hockey_stick.png",
+      "open_angry_mouth.png",
+      "pizza.png",
+      "rainbow_teeth.png",
+      "smoking.png",
+      "whistle.png"
+    ],
+    "uncommon": [
+      "cigar.png",
+      "drinks.png",
+      "knife.png",
+      "leaf.png",
+      "pipe.png"
+    ],
+    "rare": ["bubble_gum.png", "rose.png", "podcast_mic.png"],
+    "mythical": []
+  },
+  "background": {
+    "common": [],
+    "uncommon": [],
+    "rare": [],
+    "mythical": []
+  },
+  "eye": {
+    "common": [
+      "aggressive_eyes.png",
+      "angry_eyes.png",
+      "eyelashes.png",
+      "radiation_eyes.png",
+      "sleepy_eyes.png",
+      "snake_eyes.png",
+      "white_laser.png"
+    ],
+    "uncommon": [
+      "eyes_popping_out.png",
+      "ghost_eyes.png",
+      "laser_beam_eyes.png",
+      "stoner_eyes.png",
+      "war_eyes.png"
+    ],
+    "rare": ["crazy_eyes.png", "terminator.png"],
+    "mythical": []
+  },
+  "eyewear": {
+    "common": [
+      "3D_glasses.png",
+      "black_and_yellow_sunglasses.png",
+      "brown_sunglasses.png",
+      "cardboard_sunglasses.png",
+      "heart_sunglasses.png",
+      "oval_sunglasses.png",
+      "round_rimmed_glasses.png",
+      "thug_life_sunglasses.png"
+    ],
+    "uncommon": [
+      "birdbox.png",
+      "eye_patch.png",
+      "nick_fury_eyepatch.png",
+      "robot_eye.png",
+      "spikes_sunglasses.png",
+      "vr_headset.png"
+    ],
+    "rare": ["laser_eyes.png"],
+    "mythical": ["laser_glasses.png"]
+  },
+  "neckwear": {
+    "common": [
+      "airpods.png",
+      "bow.png",
+      "deathly_hallows.png",
+      "dog_tag.png",
+      "spikes_around_the_neck.png"
+    ],
+    "uncommon": ["headphones.png", "neck_circles.png", "over_mouth_scarf.png"],
+    "rare": ["black_panther_necklace.png", "crypto_necklace.png", "scarf.png"],
+    "mythical": []
+  }
+}

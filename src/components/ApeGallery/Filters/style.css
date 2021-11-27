@@ -1,0 +1,12 @@
+.reset{
+    border-radius: 100px;
+    border: 0.1px solid white;
+    padding: 12px;
+    font-size: 15px;
+    width: 150px;
+    margin: 0 0 0 30px;
+    background-color:black;
+    font-color:white;
+    color:white;
+    text-align: center;
+}

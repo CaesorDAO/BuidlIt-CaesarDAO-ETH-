@@ -1,0 +1,58 @@
+/* body{
+    background-color: black;
+} */
+
+/* .image{
+    width: auto;
+    height: 10px;
+    padding: 0px!important;
+
+} */
+
+.container {
+  background-color: black;
+  margin: 25px;
+  max-width: 62 !important;
+}
+
+@media screen and (max-width: 1000px) {
+  .container {
+    max-width: 85vw;
+  }
+}
+
+.image-box {
+  width: 320px;
+  height: auto;
+}
+
+/* .slick-dots li button:before {
+    color: white !important;
+}
+
+.slider {
+    color: tomato !important;
+}
+.dropdown {
+    font-size: 20px;
+    color: black;
+    position: fixed;
+    margin: 0px 0 0 45px;
+    padding: 0 20px 0 0;
+    background-color: white !important;
+    @media screen and (max-width: 800px) {
+        margin: 0px 0 0 0px;
+    }
+}
+.dropdown:hover {
+    box-shadow: 5px 10px 20px 1px rgb(245, 248, 248) !important;
+}
+
+.traits {
+    color: white;
+    margin-left: 800px;
+    font-size: 69px;
+    @media screen and (max-width: 800px) {
+        margin: 0px 0 0 0px;
+    }
+} */
