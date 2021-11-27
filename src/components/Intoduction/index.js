@@ -82,7 +82,7 @@ function Medium({
               <TextWrapper>
                 <TopLine lightTopLine={false}>{""}</TopLine>
                 <Heading lightText={true}>
-                  Kraznik <br></br> UnderVerse
+                  CaesorDAO <br></br> 
                 </Heading>
                 <Subtitle lightTextDesc={true}>
                   {

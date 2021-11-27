@@ -7,7 +7,7 @@ export const Unstake = () => {
 
                 <Number> 3 </Number>
 
-                <Heading> Apes availableto Unstake </Heading>
+                <Heading> NFT's availableto Unstake </Heading>
 
                 <Button> Unstake </Button>
 

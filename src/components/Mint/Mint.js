@@ -86,7 +86,7 @@ const Mint = ({ account }) => {
           )}
         </Quantity>
         <Price>
-          {buyValue ? <span>{0.04 * buyValue} ETH</span> : <span>0 ETH</span>}
+          {buyValue ? <span>{25 * buyValue} Matic</span> : <span>0 Matic</span>}
         </Price>
       </Show>
       <Choose>

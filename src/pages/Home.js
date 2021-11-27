@@ -18,7 +18,7 @@ const Home = () => {
   return (
     <>
       <Medium />
-      <Newsletter />
+      {/* <Newsletter />
 
       <Responsive />
       <Demo />
@@ -31,7 +31,7 @@ const Home = () => {
       <Team1 />
 
       <Discord />
-      <Footer />
+      <Footer /> */}
     </>
   );
 };

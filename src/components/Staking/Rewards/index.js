@@ -15,9 +15,9 @@ const Rewards = () => {
 
                 <Claim>Claim</Claim>
 
-                <UserEarning> Earning {userTokenEarning} $KRZK/Day</UserEarning>
+                <UserEarning> Earning {userTokenEarning} $CSR/Day</UserEarning>
 
-                <PLatformEarning> Earn upto 15 $KRZK/Ape/Day</PLatformEarning>
+                <PLatformEarning> Earn upto 15 $CSR/NFT/Day</PLatformEarning>
 
             </Container>
             

@@ -107,7 +107,7 @@ const App = () => {
         onDisconnect={onDisconnect}
       />
       <Switch>
-        <Route exact path="/" component={() => <Home />} />
+        <Route exact path="/" component={() => <Minting />} />
 
         <Route exact path="/gallery" component={() => <ApeGallery />} />
         <Route

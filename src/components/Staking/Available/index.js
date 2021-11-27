@@ -8,8 +8,8 @@ const Available = () => {
             <Container>
 
                 <Tokens> {tokenUnstaked}</Tokens>
-                <Title>Apes available <br></br>to stake </Title>
-                <Description> Earn $KRZK by staking Kraznik Underverse Apes </Description>
+                <Title> NFT's available <br></br>to stake </Title>
+                <Description> Earn $CSR by staking CaesorDAO NFT's </Description>
 
             </Container>
             

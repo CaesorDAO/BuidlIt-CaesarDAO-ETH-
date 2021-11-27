@@ -9,7 +9,7 @@ const Prestaking = () => {
                 <Title>Pre-Staking</Title>
 
                 <Description>👉 Approve the contract to enable staking.</Description>
-                <Description>👉 Once complete, stake your Apes.</Description>
+                <Description>👉 Once complete, stake your NFT's.</Description>
 
                 <Button> Approve Staking </Button>
             </Container>

@@ -14,7 +14,7 @@ const Balance = () => {
                 <AccountBalance>
                     <Balances> {token}</Balances>
                 </AccountBalance>
-                <Token>$KRAZ</Token>
+                <Token>$CSR</Token>
 
                 
 

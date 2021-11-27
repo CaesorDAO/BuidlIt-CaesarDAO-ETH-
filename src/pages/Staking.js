@@ -6,7 +6,7 @@ import Order from "../components/Staking/Order";
 const Staking = () => {
   return (
     <div style={{ width: "100vw", display: "grid", justifyContent: "center" }}>
-      <img src={Image} height="400px" width="1000px" margin-left="400px"></img>
+      {/* <img src={Image} height="400px" width="1000px" margin-left="400px"></img> */}
       <Order />
     </div>
   );

@@ -23,7 +23,7 @@ const Navbars = ({ account, onConnectWallet, onDisconnect }) => {
             // to="/"
             to="/gallery"
           >
-            Gallery
+            Marketplace
           </Link>
           {/* <div className="hide">Coming soon</div> */}
         </div>
