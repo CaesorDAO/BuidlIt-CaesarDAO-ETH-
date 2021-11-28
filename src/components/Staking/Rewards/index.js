@@ -36,6 +36,7 @@ const Rewards = ({ account }) => {
   const onClaim = async () => {
     const tokenIds = await CaesarStaking.methods.depositsOf(account).call();
     await CaesarStaking.methods.claimRewards(tokenIds).send({ from: account });
+    window.location.reload();
   };
 
   return (

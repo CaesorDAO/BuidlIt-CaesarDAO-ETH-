@@ -9,6 +9,7 @@ export const Unstake = ({ account }) => {
     await CaesarStaking.methods
       .withdraw(tokensToUnstake)
       .send({ from: account });
+    window.location.reload();
   };
   useEffect(() => {
     const calc = async () => {

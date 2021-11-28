@@ -12,10 +12,13 @@ import {
 } from "./StakingElements";
 
 import CaesarStaking from "../../../ethereum/CaesarStaking";
+import CaesarNFT from "../../../ethereum/CaesarNFT";
 
 const Stakings = ({ account }) => {
   const onStake = async () => {
-    await CaesarStaking.methods.deposit([1, 2]).send({ from: account });
+    const tokensArray = await CaesarNFT.methods.walletQuery(account).call();
+    await CaesarStaking.methods.deposit(tokensArray).send({ from: account });
+    window.location.reload();
   };
 
   return (
