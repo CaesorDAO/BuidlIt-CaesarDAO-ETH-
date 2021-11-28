@@ -1,37 +1,43 @@
-import React from 'react';
-import { TextWrapper } from '../../Hero/InfoSection.elements';
+import React from "react";
+import { TextWrapper } from "../../Hero/InfoSection.elements";
 
-import {Container, Title, Dropdown, Period, Description, Stake, Textwrapper} from "./StakingElements"; 
-const Stakings = () => {
-    return (
-        <div>
+import {
+  Container,
+  Title,
+  Dropdown,
+  Period,
+  Description,
+  Stake,
+  Textwrapper,
+} from "./StakingElements";
 
-            <Container>
+import CaesarStaking from "../../../ethereum/CaesarStaking";
 
-                <Title>Staking</Title>
+const Stakings = ({ account }) => {
+  const onStake = async () => {
+    await CaesarStaking.methods.deposit([1, 2]).send({ from: account });
+  };
 
-                <Dropdown></Dropdown>
+  return (
+    <div>
+      <Container>
+        <Title>Staking</Title>
 
-                <Textwrapper>            
-                <Period>30</Period>
-                <Period>60</Period>
-                <Period>90</Period>
+        <Dropdown></Dropdown>
 
-                </Textwrapper>
+        {/* <Textwrapper>
+          <Period>30</Period>
+          <Period>60</Period>
+          <Period>90</Period>
+        </Textwrapper> */}
+        <br />
 
-    
+        {/* <Description>You will get 12.5 $KRAZ/DAY</Description> */}
 
-                {/* <Description>You will get 12.5 $KRAZ/DAY</Description> */}
-
-                <Stake>Stake</Stake>
-
-
-            </Container>
-            
-        </div>
-    )
+        <Stake onClick={onStake}>Stake</Stake>
+      </Container>
+    </div>
+  );
 };
 
 export default Stakings;
-
-

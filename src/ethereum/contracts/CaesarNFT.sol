@@ -1306,10 +1306,11 @@ abstract contract Ownable is Context {
 pragma solidity ^0.8.0;
 
 
-contract Caesar is ERC721Enumerable, Ownable {
+contract CaesarNFT is ERC721Enumerable, Ownable {
     using Strings for uint256;
 
     string _baseTokenURI;
+    string public baseExtension = ".json";
     
     uint256 public reserve = 1100;
     uint256 public constant caesarSupply = 10000;
@@ -1325,13 +1326,14 @@ contract Caesar is ERC721Enumerable, Ownable {
     
     address[] whitelistAddr;
 
-    constructor(string memory baseURI) ERC721("Caesar", "CAESAR")  {
+    constructor(string memory baseURI) ERC721("CaesarNFT", "CAESAR")  {
         setBaseURI(baseURI);
     }
 
     function mintCaesars(uint256 numberOfTokens) public payable {
         uint256 supply = totalSupply();
         require(saleActive, "Sale is inactive");
+        require(numberOfTokens > 0, "Atleast mint 1 token");
         require( numberOfTokens <= 4, "You can mint max 4 tokens at a time" );
         require( supply + numberOfTokens <= (caesarSupply - reserve), "Purchase exceeds maximum supply of Caesar tokens" );
         require( msg.value >= caesarPrice * numberOfTokens,  "Ether sent is not correct" );
@@ -1371,6 +1373,28 @@ contract Caesar is ERC721Enumerable, Ownable {
             tokensId[i] = tokenOfOwnerByIndex(_owner, i);
         }
         return tokensId;
+    }
+
+    function tokenURI(uint256 tokenId)
+    public
+    view
+    virtual
+    override
+    returns (string memory)
+    {
+        require(
+        _exists(tokenId),
+        "ERC721Metadata: URI query for nonexistent token"
+        );
+        
+        // if(revealed == false) {
+        //     return notRevealedUri;
+        // }
+
+        string memory currentBaseURI = _baseTokenURI;
+        return bytes(currentBaseURI).length > 0
+            ? string(abi.encodePacked(currentBaseURI, tokenId.toString(), baseExtension))
+            : "";
     }
 
     function setBaseURI(string memory baseURI) public onlyOwner {

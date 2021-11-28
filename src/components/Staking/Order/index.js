@@ -1,5 +1,5 @@
-import React from 'react'; 
-import {InfoCol, InfoWrapperRow} from "./OrderElements";
+import React from "react";
+import { InfoCol, InfoWrapperRow } from "./OrderElements";
 import Image from "../../../images/Group 91.png";
 
 import Rewards from "../Rewards";
@@ -9,45 +9,29 @@ import Balance from "../Token-Balance";
 import { Unstake } from "../Unstake";
 import Available from "../Available";
 import Stakings from "../Stakings/index.js";
-import { ImgWrapper } from '../../Hero/InfoSection.elements';
+import { ImgWrapper } from "../../Hero/InfoSection.elements";
 
+const Order = ({ account }) => {
+  return (
+    <div>
+      <InfoWrapperRow>
+        <InfoCol>
+          <PreStaking account={account} />
+          <Stakings account={account} />
+        </InfoCol>
 
-const Order = () => {
-    return (
-        <div>
+        <InfoCol>
+          <Available account={account} />
+          <Unstake account={account} />
+        </InfoCol>
 
+        <InfoCol>
+          <Rewards account={account} />
+          <Balance account={account} />
+        </InfoCol>
+      </InfoWrapperRow>
+    </div>
+  );
+};
 
-            
-
-            <InfoWrapperRow>
-
-                <InfoCol>
-                    <PreStaking />
-                    <Stakings />
-                </InfoCol>
-
-
-
-                <InfoCol>
-                    <Available />
-                    <Unstake />
-                </InfoCol>
-
-
-                <InfoCol>
-                    <Rewards />
-                    <Balance />
-
-                </InfoCol>
-
-
-
-
-            </InfoWrapperRow>
-
-            
-        </div>
-    )
-}
-
-export default Order
+export default Order;

@@ -1,18 +1,33 @@
-import React from 'react';
-import {Container,Number,Heading, Button} from "./Unstakeelements"
-export const Unstake = () => {
-    return (
-        <div>
-            <Container>
+import React, { useEffect, useState } from "react";
+import { Container, Number, Heading, Button } from "./Unstakeelements";
 
-                <Number> 3 </Number>
+import CaesarStaking from "../../../ethereum/CaesarStaking";
 
-                <Heading> NFT's availableto Unstake </Heading>
+export const Unstake = ({ account }) => {
+  const [tokensToUnstake, settokensToUnstake] = useState([]);
+  const onUnstake = async () => {
+    await CaesarStaking.methods
+      .withdraw(tokensToUnstake)
+      .send({ from: account });
+  };
+  useEffect(() => {
+    const calc = async () => {
+      console.log(account);
+      const tokenArray = await CaesarStaking.methods.depositsOf(account).call();
+      console.log(tokenArray);
+      settokensToUnstake(tokenArray);
+    };
+    if (account) calc();
+  }, []);
+  return (
+    <div>
+      <Container>
+        <Number> {tokensToUnstake.length} </Number>
 
-                <Button> Unstake </Button>
+        <Heading> NFT's available to Unstake </Heading>
 
-            </Container>
-            
-        </div>
-    )
-}
+        <Button onClick={onUnstake}> Unstake </Button>
+      </Container>
+    </div>
+  );
+};

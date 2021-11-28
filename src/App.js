@@ -115,7 +115,11 @@ const App = () => {
           path="/mint"
           component={() => <Minting account={account} />}
         />
-        <Route exact path="/staking" component={() => <Staking />} />
+        <Route
+          exact
+          path="/staking"
+          component={() => <Staking account={account} />}
+        />
       </Switch>
       {/* <Footer /> */}
     </div>

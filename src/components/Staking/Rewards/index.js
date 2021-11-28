@@ -1,28 +1,58 @@
-import React from 'react';
-import {Container,Title,RewardTokens,Claim,UserEarning,PLatformEarning} from "./Rewards-elements"
+import React, { useEffect, useState } from "react";
+import CaesarStaking from "../../../ethereum/CaesarStaking";
+import {
+  Container,
+  Title,
+  RewardTokens,
+  Claim,
+  UserEarning,
+  PLatformEarning,
+} from "./Rewards-elements";
 
-var userTokenEarning = "10"; 
-var UserStakingRewards = "69.420"; 
+var userTokenEarning = "10";
 
-const Rewards = () => {
-    return (
-        <div>
-            <Container>
+const Rewards = ({ account }) => {
+  const [totalRewards, settotalRewards] = useState(0);
 
-                <Title>Your Rewards </Title>
+  const calcRewards = async () => {
+    const tokenIds = await CaesarStaking.methods.depositsOf(account).call();
+    console.log(tokenIds);
+    const rewardsArray = await CaesarStaking.methods
+      .calculateRewards(account, tokenIds)
+      .call();
+    console.log(rewardsArray);
 
-                <RewardTokens>{UserStakingRewards}</RewardTokens>
+    let rewardsTotal = 0;
+    rewardsArray.map((reward) => {
+      rewardsTotal += reward / 10 ** 18;
+    });
+    settotalRewards(rewardsTotal);
+  };
 
-                <Claim>Claim</Claim>
+  useEffect(() => {
+    if (account) calcRewards();
+  }, [totalRewards]);
 
-                <UserEarning> Earning {userTokenEarning} $CSR/Day</UserEarning>
+  const onClaim = async () => {
+    const tokenIds = await CaesarStaking.methods.depositsOf(account).call();
+    await CaesarStaking.methods.claimRewards(tokenIds).send({ from: account });
+  };
 
-                <PLatformEarning> Earn upto 15 $CSR/NFT/Day</PLatformEarning>
+  return (
+    <div>
+      <Container>
+        <Title>Your Rewards </Title>
 
-            </Container>
-            
-        </div>
-    )
-}
+        <RewardTokens>{totalRewards}</RewardTokens>
+
+        <Claim onClick={onClaim}>Claim</Claim>
+
+        <UserEarning> Earning {userTokenEarning} $CSR/Day</UserEarning>
+
+        <PLatformEarning> Earn upto 15 $CSR/NFT/Day</PLatformEarning>
+      </Container>
+    </div>
+  );
+};
 
 export default Rewards;

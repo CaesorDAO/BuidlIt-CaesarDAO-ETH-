@@ -18,7 +18,7 @@ import {
   Total,
 } from "./Mint.elements";
 
-import CaesarToken from "../../ethereum/Caesar";
+import CaesarToken from "../../ethereum/CaesarNFT";
 
 const Mint = ({ account }) => {
   const [buyValue, setBuyValue] = useState(null);
