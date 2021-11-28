@@ -95,6 +95,7 @@ export default function SelectVariants({
   }, [reset]);
 
   return (
+    <>
     <div>
       <FormControl
         className="form"
@@ -127,5 +128,7 @@ export default function SelectVariants({
         </Select>
       </FormControl>
     </div>
+    </>
+    
   );
 }

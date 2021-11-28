@@ -37,3 +37,17 @@ color:white;
 margin: 12.5px 0 0 45px ; 
 
 `;
+
+export const ButtonApproved = styled.button`
+height:36px; 
+width:214px;
+border-radius: 10px; 
+background-color:grey;
+text-align: center;
+text-color: white;
+font-size: 18px;
+font-weight: bold;
+color:white;
+margin: 12.5px 0 0 45px ; 
+
+`;

@@ -6,7 +6,35 @@
     width: 150px;
     margin: 0 0 0 30px;
     background-color:black;
-    font-color:white;
     color:white;
     text-align: center;
+}
+
+.wallet{
+    border: 0.1px solid white;
+    border-radius: 20px;
+    padding: 12px;
+    font-size: 15px;
+    width: 150px;
+    margin: 0 0 0 30px;
+    background-color:grey;
+    color:white;
+    text-align: center;
+    margin: 5px 0 0 30px ;
+
+}
+
+.wallet-icons{
+    color:white;
+    align-items: center;
+    margin: -10px 0 0 20px;
+
+}
+
+.my-wallet{
+    font-size: 25px;
+    display: inline;
+    color: white;
+    margin: 20px 0 0 15px;
+
 }

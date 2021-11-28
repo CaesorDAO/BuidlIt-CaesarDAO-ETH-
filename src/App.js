@@ -120,6 +120,7 @@ const App = () => {
           path="/staking"
           component={() => <Staking account={account} />}
         />
+        
       </Switch>
       {/* <Footer /> */}
     </div>

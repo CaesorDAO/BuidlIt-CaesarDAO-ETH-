@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Title, Description, Button } from "./PreStakingelements";
+import { Container, Title, Description, Button, ButtonApproved } from "./PreStakingelements";
 import CaesarNFT from "../../../ethereum/CaesarNFT";
 
 const stakingContractAddress = "0xD3C2AE5146DbE8b74323E2280Ec7CAA49ae94d64";
@@ -34,7 +34,7 @@ const Prestaking = ({ account }) => {
         <Description>👉 Once complete, stake your NFT's.</Description>
 
         {isApproved ? (
-          <Button>Approved</Button>
+          <ButtonApproved>Approved</ButtonApproved>
         ) : (
           <Button onClick={onApproveStaking}> Approve Staking </Button>
         )}

@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Dropdown from "../Dropdown/Dropdown";
+import { Link } from "react-router-dom";
+import { FaWallet } from '@react-icons/all-files/fa/FaWallet';
+
 import "./style.css";
+import Logo from '../../../images/wallet.png';
 
 const Container = styled.div`
   display: flex;
-  /* align-items: center; */
+
   justify-content: flex-end;
-  /* margin-left: 50px; */
-  /* padding-left: 50px; */
-  /* position: relative; */
+
   @media screen and (max-width: 600px) {
     justify-content: center;
   }
@@ -34,6 +36,25 @@ const Filter = styled.div`
     position: relative;
   }
 `;
+
+const Wallet = styled.div`
+  height: 60px;
+  width: 250px;
+  position: absolute;
+  background-color: #1b1b1b;
+  margin: 620px 0 0 0 ;
+  padding: 10px 15px;
+  border-radius: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 600px) {
+    position: relative;
+  }
+`;
+
 
 const Text1 = styled.div`
   color: black !important;
@@ -108,7 +129,14 @@ const Index = ({ properties, setProperties }) => {
   const [tokenId, setTokenId] = useState("");
 
   return (
+    <>
     <Container>
+    <Wallet >
+      <Link to="/">
+        <img src={Logo} className="wallet-icons"  height="30px" width="30px"/>
+        <h1 className="my-wallet"> My Wallet </h1>
+        </Link>
+      </Wallet>
       <Filter>
         {/* Search bar */}
         {/* <input type="number" /> */}
@@ -156,8 +184,19 @@ const Index = ({ properties, setProperties }) => {
         >
           RESET FILTERS
         </button>
+        {/* <button className="wallet"> 
+        <img src={BiWallet}/>
+        My Wallet </button> */}
+
+       
       </Filter>
+
+      
+      
     </Container>
+    </>
+    
+   
   );
 };
 
