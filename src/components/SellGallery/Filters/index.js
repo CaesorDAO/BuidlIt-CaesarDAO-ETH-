@@ -132,7 +132,7 @@ const Index = ({ properties, setProperties }) => {
     <>
     <Container>
     <Wallet >
-      <Link to="/">
+      <Link to="/MyWalletGallery">
         <img src={Logo} className="wallet-icons"  height="30px" width="30px"/>
         <h1 className="my-wallet"> My Wallet </h1>
         </Link>
