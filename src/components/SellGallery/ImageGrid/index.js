@@ -91,10 +91,14 @@ const Heading = styled.div`
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  text-align: left;
-  color: #aaf200;
-  margin: 10px 0 0 0;
+  text-align: center;
+  color: white;
+  margin: 0px 0 0 0;
   padding: 10px 0 0 0px;
+
+  &:hover {
+    color:black;
+  }
 `;
 
 const Trait = styled.div`
@@ -188,6 +192,58 @@ const Edits = styled.h1`
   }
 `
 
+const SellerNavbar = styled.div`
+background-color:black;
+display: flex;
+flex-wrap: wrap;
+width: auto;
+padding: 0 0 20px 150px; 
+`;
+
+const Unlisted = styled.div`
+ color:white;
+ display: inline-block;
+ border: 0.1px solid white;
+ border-radius: 20px;
+ font-size: 20px;
+ color:white;
+ height: 50px;
+ width: 250px;
+ text-align: center;
+ margin: 0 20px 0 0 ;
+
+ &:hover {
+  cursor: pointer;
+  border: 1px solid white;
+  background-color:white;
+}
+
+
+  `;
+
+const OnSale = styled.div`
+color: white;
+display: inline-block;
+text-align: center;
+
+display: inline-block;
+border: 0.1px solid white;
+border-radius: 20px;
+font-size: 20px;
+color:white;
+height: 50px;
+width: 250px;
+
+&:hover {
+  cursor: pointer;
+  border: 1px solid white;
+  background-color:white;
+}
+
+`;
+
+
+
 const Left = styled.div`
   height: 500px;
   width: 400px;
@@ -252,6 +308,10 @@ const ImageGrid = ({ properties, setProperties }) => {
 
   return (
     <Container>
+      <SellerNavbar>
+        <Unlisted><Heading>Unlisted </Heading></Unlisted>
+        <OnSale> <Heading>On Sale </Heading> </OnSale>
+      </SellerNavbar>
       {/* <Text>ApeGallery Images</Text> */}
       {apes ? (
         <GridView>
@@ -264,6 +324,7 @@ const ImageGrid = ({ properties, setProperties }) => {
                     setApeProp(ape);
                   }}
                 >
+                  
                   <ImgWrappers start={""}>
                     <Img
                       // src={Ape1}

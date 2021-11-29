@@ -165,10 +165,6 @@
   margin: 5px 0 0 20px;
   text-align: right;
 
-  &:hover {
-    cursor: pointer;
-  }
-
   
 }
 

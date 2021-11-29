@@ -48,6 +48,8 @@ const Wallet = styled.div`
 
   &:hover {
     cursor: pointer;
+    outline: white;
+    border: 1px solid grey;
   }
 
   @media screen and (max-width: 600px) {
