@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+
 // import Modal from "../Modal/Modal";
 import "./style.css";
 // import Ape1 from "../../../images/ape1.png";
@@ -10,6 +11,8 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Edit from "../../../images/edit.png";
+
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 const axios = require("axios");
@@ -175,6 +178,16 @@ const Right = styled.div`
   }
 `;
 
+const Edits = styled.h1`
+
+  margin: 5px 0 0 20px;
+  text-align: right;
+
+  &:hover {
+    cursor: pointer;
+  }
+`
+
 const Left = styled.div`
   height: 500px;
   width: 400px;
@@ -214,6 +227,8 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+
+
 
 const ImageGrid = ({ properties, setProperties }) => {
   const [apes, setApes] = useState(null);
@@ -259,7 +274,16 @@ const ImageGrid = ({ properties, setProperties }) => {
                       // width="400px"
                       width="100%"
                     />
-                    <div className="id"> APE#{ape.id}</div>
+                    <div className="id"> APE#{ape.id}  
+                    
+                    </div>
+                    {/* <div className="id"> Edit Id 
+                    <img src={Edit} height="20px" className="edit"></img>
+                    </div> */}
+
+                    
+
+                    
                     {/* <button className="sell"> Sell </button> */}
                   </ImgWrappers>
                 </Card>
@@ -275,7 +299,14 @@ const ImageGrid = ({ properties, setProperties }) => {
             <Box sx={style} className="popup-containers">
               {apeProp ? (
                 <>
-                  <div className="number">{apeProp.name}</div>
+                  <div className="number">{apeProp.name}
+                 <Edits> Edit Id 
+                 <img src={Edit} height="20px" className="edit"></img>
+                 </Edits>
+                    
+                    </div>
+                  
+                  
                   <Content>
                     <Left>
                       <ImgWrapper start={""}>

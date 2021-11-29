@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Dropdown from "../Dropdown/Dropdown";
 import { Link } from "react-router-dom";
-import { FaWallet } from '@react-icons/all-files/fa/FaWallet';
+import { FaEdit } from '@react-icons/all-files/fa/FaEdit';
+
 
 import "./style.css";
 import Logo from '../../../images/wallet.png';
