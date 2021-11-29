@@ -14,6 +14,7 @@ import "./App.css";
 import Web3Modal from "web3modal";
 import web3 from "./ethereum/web3";
 import WalletConnectProvider from "@walletconnect/web3-provider";
+import SellGallery from "./components/SellGallery";
 
 const infuraId =
   "https://rinkeby.infura.io/v3/97c2d52095a84da7a0b710a8daa16acf";
@@ -110,6 +111,7 @@ const App = () => {
         <Route exact path="/" component={() => <Minting />} />
 
         <Route exact path="/gallery" component={() => <ApeGallery />} />
+        <Route exact path="/MyWalletGallery" component={() => <SellGallery />} />
         <Route
           exact
           path="/mint"

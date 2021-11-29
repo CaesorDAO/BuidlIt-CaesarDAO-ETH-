@@ -272,7 +272,7 @@ const ImageGrid = ({ properties, setProperties }) => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <Box sx={style} className="popup-container">
+            <Box sx={style} className="popup-containers">
               {apeProp ? (
                 <>
                   <div className="number">{apeProp.name}</div>
@@ -280,51 +280,23 @@ const ImageGrid = ({ properties, setProperties }) => {
                     <Left>
                       <ImgWrapper start={""}>
                         <ModalImg src={apeProp.image} alt={apeProp.name} />
-                        <button className="objkt"> View on Objkt.com </button>
+                        <div className="sell-point-container">
+                        <div className="price-container">
+                          <h1 className="matic"> MATIC </h1>
+                            <forum className="forms">
+                              <input type="number" placeholder="Price" className="sell-price-input">
+                              </input>
+                            </forum>
+                        </div>
+                        <button className="sell"> Sell </button>
+                        </div>
+                        
+                        
+
                       </ImgWrapper>
                     </Left>
 
-                    <Right>
-                      <Rank>
-                        {" "}
-                        Rarity Rank : {apeProp.rarityRank}
-                        {/* Null */}
-                      </Rank>
-
-                      <Heading> Headwear </Heading>
-                      <Trait>
-                        {" "}
-                        {apeProp.headwear ? apeProp.headwear : "None"}
-                      </Trait>
-                      <Heading> Skin </Heading>
-                      <Trait> {apeProp.skin ? apeProp.skin : "None"}</Trait>
-                      <Heading> Eye </Heading>
-                      <Trait> {apeProp.eye ? apeProp.eye : "None"}</Trait>
-                      <Heading> Eyewear </Heading>
-                      <Trait>
-                        {" "}
-                        {apeProp.eyewear ? apeProp.eyewear : "None"}
-                      </Trait>
-                      <Heading> Mouth Cosmetics </Heading>
-                      <Trait>
-                        {" "}
-                        {apeProp.mouthCosmetics
-                          ? apeProp.mouthCosmetics
-                          : "None"}
-                      </Trait>
-                      <Heading> Clothes </Heading>
-                      <Trait>
-                        {" "}
-                        {apeProp.clothes ? apeProp.clothes : "None"}
-                      </Trait>
-                      <Heading> Neckwear </Heading>
-                      <Trait>
-                        {" "}
-                        {apeProp.neckwear ? apeProp.neckwear : "None"}
-                      </Trait>
-                      <Heading> Background </Heading>
-                      <Trait> {apeProp.bg ? apeProp.bg : "None"}</Trait>
-                    </Right>
+                    
                   </Content>
                 </>
               ) : null}

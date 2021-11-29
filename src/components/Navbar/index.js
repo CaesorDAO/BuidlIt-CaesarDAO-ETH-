@@ -43,6 +43,7 @@ const Navbars = ({ account, onConnectWallet, onDisconnect }) => {
           {/* <div className="hide">Coming soon</div> */}
         </div>
 
+
         {account ? (
           <Button className="test2" onClick={onDisconnect}>
             {address}
