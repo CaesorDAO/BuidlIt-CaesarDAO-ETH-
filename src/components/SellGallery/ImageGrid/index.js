@@ -124,6 +124,7 @@ const GridView = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
+  justify-content: center;
 
   @media screen and (max-width: 600px) {
     justify-content: center;
