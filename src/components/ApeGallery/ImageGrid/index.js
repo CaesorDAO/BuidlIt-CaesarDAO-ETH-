@@ -204,6 +204,26 @@ const Left = styled.div`
   }
 `;
 
+const CurrentOwnerContainer = styled.div`
+  border-radius:5px;
+  display: inline-block;
+  font-size: 25px;
+  padding-top:20px;
+
+  text-align:center;
+  float:center;
+
+  background-color:black;
+`;
+
+const Owner = styled.div`
+display: inline-block;
+font-size:10px;
+text-align:center;
+float:center;
+
+`
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -281,8 +301,17 @@ const ImageGrid = ({ properties, setProperties }) => {
                     <Left>
                       <ImgWrapper start={""}>
                         <ModalImg src={apeProp.image} alt={apeProp.name} />
+                 
+                       
                         <button className="objkt"> View on Objkt.com </button>
+
+                        {/* <CurrentOwnerContainer> Owner :   
+                         <Owner>  0xdd48e11744c2b003B59A1D2CED61703a10306bb1</Owner>
+                       </CurrentOwnerContainer>
+                         */}
+                        
                       </ImgWrapper>
+                      
                     </Left>
 
                     <Right>
