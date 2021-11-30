@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import Filters from "./Filters/index";
 import ImageGrid from "./ImageGrid/index";
 
 import ScrollButton from "./ScrollButton/ScrollButton";
+
+import CaesarNFT from "../../ethereum/CaesarNFT";
 
 const Container = styled.div`
   display: grid;
@@ -40,7 +42,7 @@ const Container = styled.div`
   }
 `;
 
-const SellGallery = () => {
+const SellGallery = ({ account }) => {
   const [properties, setProperties] = useState({
     bg: "",
     clothes: "",
@@ -52,11 +54,33 @@ const SellGallery = () => {
     skin: "",
   });
 
+  const [ownedTokensList, setOwnedTokens] = useState([]);
+
+  useEffect(() => {
+    async function ownedTokens() {
+      const ownedTokensArray = await CaesarNFT.methods
+        .walletQuery(account)
+        .call();
+
+      setOwnedTokens(ownedTokensArray);
+
+      await ownedTokensArray.map((tokenId) => {
+        setProperties({ id: tokenId });
+      });
+    }
+
+    if (account) ownedTokens();
+  }, []);
+
   return (
     <>
       <Container>
         <Filters properties={properties} setProperties={setProperties} />
-        <ImageGrid properties={properties} setProperties={setProperties} />
+        <ImageGrid
+          properties={properties}
+          setProperties={setProperties}
+          ownedTokensList={ownedTokensList}
+        />
       </Container>
       <ScrollButton />
     </>

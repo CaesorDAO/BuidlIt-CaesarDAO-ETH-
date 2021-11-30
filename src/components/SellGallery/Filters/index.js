@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Dropdown from "../Dropdown/Dropdown";
 import { Link } from "react-router-dom";
-import { FaEdit } from '@react-icons/all-files/fa/FaEdit';
-
+import { FaEdit } from "@react-icons/all-files/fa/FaEdit";
 
 import "./style.css";
-import Logo from '../../../images/wallet.png';
+import Logo from "../../../images/wallet.png";
 
 const Container = styled.div`
   display: flex;
@@ -15,6 +14,7 @@ const Container = styled.div`
 
   @media screen and (max-width: 600px) {
     justify-content: center;
+    margin-bottom: 80px;
   }
 `;
 
@@ -43,7 +43,7 @@ const Wallet = styled.div`
   width: 250px;
   position: absolute;
   background-color: #1b1b1b;
-  margin: 620px 0 0 0 ;
+  margin: 620px 0 0 0;
   padding: 10px 15px;
   border-radius: 10px;
 
@@ -52,10 +52,9 @@ const Wallet = styled.div`
   }
 
   @media screen and (max-width: 600px) {
-    position: relative;
+    /* position: relative; */
   }
 `;
-
 
 const Text1 = styled.div`
   color: black !important;
@@ -131,73 +130,71 @@ const Index = ({ properties, setProperties }) => {
 
   return (
     <>
-    <Container>
-    <Wallet >
-      <Link to="/MyWalletGallery">
-        <img src={Logo} className="wallet-icons"  height="30px" width="30px"/>
-        <h1 className="my-wallet"> My Wallet </h1>
-        </Link>
-      </Wallet>
-      <Filter>
-        {/* Search bar */}
-        {/* <input type="number" /> */}
-        <SearchBar
-          placeholder="SEARCH BY ID"
-          type="number"
-          value={tokenId}
-          onChange={(e) => {
-            setTokenId(e.target.value);
-            setProperties({ id: e.target.value });
-          }}
-        />
-
-        {attributes.map((attr) => {
-          return (
-            <Dropdown
-              key={attr.name}
-              properties={properties}
-              setProperties={setProperties}
-              attribute={attr.name}
-              traitTypes={attr.traitTypes}
-              reset={reset}
-              setReset={setReset}
+      <Container>
+        <Wallet>
+          <Link to="/MyWalletGallery">
+            <img
+              src={Logo}
+              className="wallet-icons"
+              height="30px"
+              width="30px"
             />
-          );
-        })}
+            <h1 className="my-wallet"> My Wallet </h1>
+          </Link>
+        </Wallet>
+        <Filter>
+          {/* Search bar */}
+          {/* <input type="number" /> */}
+          {/* <SearchBar
+            placeholder="SEARCH BY ID"
+            type="number"
+            value={tokenId}
+            onChange={(e) => {
+              setTokenId(e.target.value);
+              setProperties({ id: e.target.value });
+            }}
+          /> */}
 
-        <button
-          className="reset"
-          onClick={() => {
-            setProperties({
-              bg: "",
-              clothes: "",
-              eye: "",
-              eyewear: "",
-              headwear: "",
-              mouthCosmetics: "",
-              neckwear: "",
-              skin: "",
-              id: "",
-            });
-            setTokenId("");
-            setReset(true);
-          }}
-        >
-          RESET FILTERS
-        </button>
-        {/* <button className="wallet"> 
+          {attributes.map((attr) => {
+            return (
+              <Dropdown
+                key={attr.name}
+                properties={properties}
+                setProperties={setProperties}
+                attribute={attr.name}
+                traitTypes={attr.traitTypes}
+                reset={reset}
+                setReset={setReset}
+              />
+            );
+          })}
+
+          <button
+            className="reset"
+            onClick={() => {
+              setProperties({
+                bg: "",
+                clothes: "",
+                eye: "",
+                eyewear: "",
+                headwear: "",
+                mouthCosmetics: "",
+                neckwear: "",
+                skin: "",
+                id: "",
+              });
+              setTokenId("");
+              setReset(true);
+            }}
+          >
+            RESET FILTERS
+          </button>
+          {/* <button className="wallet"> 
         <img src={BiWallet}/>
         My Wallet </button> */}
-
-       
-      </Filter>
-
-      
-      
-    </Container>
+        </Filter>
+      </Container>
     </>
-    
-   
   );
 };
 

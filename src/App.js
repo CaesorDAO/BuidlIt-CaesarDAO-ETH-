@@ -111,7 +111,11 @@ const App = () => {
         <Route exact path="/" component={() => <Minting />} />
 
         <Route exact path="/gallery" component={() => <ApeGallery />} />
-        <Route exact path="/MyWalletGallery" component={() => <SellGallery />} />
+        <Route
+          exact
+          path="/MyWalletGallery"
+          component={() => <SellGallery account={account} />}
+        />
         <Route
           exact
           path="/mint"
@@ -122,7 +126,6 @@ const App = () => {
           path="/staking"
           component={() => <Staking account={account} />}
         />
-        
       </Switch>
       {/* <Footer /> */}
     </div>

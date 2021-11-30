@@ -78,7 +78,7 @@ const Container = styled.div`
   justify-content: flex-start;
 
   @media screen and (max-width: 600px) {
-    display: flex;
+    /* display: flex; */
     align-self: center !important;
   }
 `;
@@ -97,7 +97,7 @@ const Heading = styled.div`
   padding: 10px 0 0 0px;
 
   &:hover {
-    color:black;
+    color: black;
   }
 `;
 
@@ -183,66 +183,65 @@ const Right = styled.div`
 `;
 
 const Edits = styled.h1`
-
   margin: 5px 0 0 20px;
   text-align: right;
+  font-size: 20px;
 
   &:hover {
     cursor: pointer;
   }
-`
+`;
 
 const SellerNavbar = styled.div`
-background-color:black;
-display: flex;
-flex-wrap: wrap;
-width: auto;
-padding: 0 0 20px 150px; 
+  background-color: black;
+  display: flex;
+  flex-wrap: wrap;
+  width: auto;
+  /* padding: 0 0 20px 150px; */
+  margin-bottom: 30px;
+  justify-content: center;
 `;
 
 const Unlisted = styled.div`
- color:white;
- display: inline-block;
- border: 0.1px solid white;
- border-radius: 20px;
- font-size: 20px;
- color:white;
- height: 50px;
- width: 250px;
- text-align: center;
- margin: 0 20px 0 0 ;
+  color: white;
+  display: inline-block;
+  border: 0.1px solid white;
+  border-radius: 20px;
+  font-size: 20px;
+  color: white;
+  height: 50px;
+  width: 250px;
+  text-align: center;
+  /* margin: 0 20px 0 0; */
+  margin: 10px 20px;
 
- &:hover {
-  cursor: pointer;
-  border: 1px solid white;
-  background-color:white;
-}
-
-
-  `;
-
-const OnSale = styled.div`
-color: white;
-display: inline-block;
-text-align: center;
-
-display: inline-block;
-border: 0.1px solid white;
-border-radius: 20px;
-font-size: 20px;
-color:white;
-height: 50px;
-width: 250px;
-
-&:hover {
-  cursor: pointer;
-  border: 1px solid white;
-  background-color:white;
-}
-
+  &:hover {
+    cursor: pointer;
+    border: 1px solid white;
+    background-color: white;
+  }
 `;
 
+const OnSale = styled.div`
+  color: white;
+  display: inline-block;
+  text-align: center;
 
+  display: inline-block;
+  border: 0.1px solid white;
+  border-radius: 20px;
+  font-size: 20px;
+  color: white;
+  height: 50px;
+  width: 250px;
+  margin: 10px 20px;
+
+  &:hover {
+    cursor: pointer;
+    border: 1px solid white;
+    background-color: white;
+  }
+`;
 
 const Left = styled.div`
   height: 500px;
@@ -284,10 +283,8 @@ const style = {
   p: 4,
 };
 
-
-
-const ImageGrid = ({ properties, setProperties }) => {
-  const [apes, setApes] = useState(null);
+const ImageGrid = ({ properties, setProperties, ownedTokensList }) => {
+  const [apes, setApes] = useState([]);
   const [apeProp, setApeProp] = useState(null);
   const [open, setOpen] = useState(false);
 
@@ -297,7 +294,7 @@ const ImageGrid = ({ properties, setProperties }) => {
 
     if (properties) {
       const res = await axios.post(url, properties);
-      // console.log(res.data);
+      console.log(res.data.data);
       setApes(res.data.data);
     }
   };
@@ -309,42 +306,47 @@ const ImageGrid = ({ properties, setProperties }) => {
   return (
     <Container>
       <SellerNavbar>
-        <Unlisted><Heading>Unlisted </Heading></Unlisted>
-        <OnSale> <Heading>On Sale </Heading> </OnSale>
+        <Unlisted>
+          <Heading>Unlisted </Heading>
+        </Unlisted>
+        <OnSale>
+          {" "}
+          <Heading>On Sale </Heading>{" "}
+        </OnSale>
       </SellerNavbar>
       {/* <Text>ApeGallery Images</Text> */}
-      {apes ? (
+      {apes.length !== 0 ? (
         <GridView>
-          {apes.map((ape) => {
+          {ownedTokensList.map((tokenId, index) => {
+            let tokId = parseInt(tokenId);
+            console.log("tokId: ", tokId);
+            let ape = apes[tokId];
+            console.log("apes in tokId: ", apes[tokId]);
+            // console.log("ape", typeof parseInt(tokenId));
+            // console.log(apes[0]);
             return (
-              <div key={ape.id}>
+              <div key={index}>
                 <Card
                   onClick={() => {
                     setOpen(true);
                     setApeProp(ape);
                   }}
                 >
-                  
                   <ImgWrappers start={""}>
                     <Img
                       // src={Ape1}
                       effect="blur"
-                      src={ape.image}
-                      alt={ape.name}
+                      src={ape ? ape.image : ""}
+                      alt={ape ? ape.name : ""}
                       // height="400px"
                       // width="400px"
                       width="100%"
                     />
-                    <div className="id"> APE#{ape.id}  
-                    
-                    </div>
+                    <div className="id"> {ape ? `APE#${ape.id}` : ""}</div>
                     {/* <div className="id"> Edit Id 
                     <img src={Edit} height="20px" className="edit"></img>
                     </div> */}
 
-                    
-
-                    
                     {/* <button className="sell"> Sell </button> */}
                   </ImgWrappers>
                 </Card>
@@ -360,35 +362,34 @@ const ImageGrid = ({ properties, setProperties }) => {
             <Box sx={style} className="popup-containers">
               {apeProp ? (
                 <>
-                  <div className="number">{apeProp.name}
-                 <Edits> Edit Id 
-                 <img src={Edit} height="20px" className="edit"></img>
-                 </Edits>
-                    
-                    </div>
-                  
-                  
+                  <div className="number">
+                    {apeProp.name}
+                    <Edits>
+                      {" "}
+                      Edit Id
+                      <img src={Edit} height="16px" className="edit"></img>
+                    </Edits>
+                  </div>
+
                   <Content>
                     <Left>
                       <ImgWrapper start={""}>
                         <ModalImg src={apeProp.image} alt={apeProp.name} />
                         <div className="sell-point-container">
-                        <div className="price-container">
-                          <h1 className="matic"> MATIC </h1>
+                          <div className="price-container">
+                            <h1 className="matic"> MATIC </h1>
                             <forum className="forms">
-                              <input type="number" placeholder="Price" className="sell-price-input">
-                              </input>
+                              <input
+                                type="number"
+                                placeholder="Price"
+                                className="sell-price-input"
+                              ></input>
                             </forum>
+                          </div>
+                          <button className="sell"> Sell </button>
                         </div>
-                        <button className="sell"> Sell </button>
-                        </div>
-                        
-                        
-
                       </ImgWrapper>
                     </Left>
-
-                    
                   </Content>
                 </>
               ) : null}

@@ -78,18 +78,17 @@
   background: black;
 } */
 
-.MuiModal-root .popup-container {
+.MuiModal-root .popup-containers {
   border-radius: 20px;
   border: 1px solid white;
 }
 
-
-.sell{
+.sell {
   color: white;
   height: 45px;
   width: 75px;
   display: inline-block;
-  margin: 15px 0 0 10px ;
+  margin: 15px 0 0 10px;
   position: relative;
   font-size: 20px;
   background-color: red;
@@ -97,38 +96,33 @@
   outline: none;
   border-radius: 5px;
   font-weight: bold;
-
 }
 
-
-.price-container{
+.price-container {
   height: 50px;
   width: 310px;
   background-color: black;
   border-radius: 10px;
-  margin: 20px 0 0 0 ;
+  margin: 20px 0 0 0;
   display: inline-block;
   border: solid 1px #fff;
-
-
-
 }
 
-.matic{
+.matic {
   font-weight: italic;
   display: relative;
   margin: 80px 0 0 40px;
-  padding: 5px 0 0 0 ;
+  padding: 5px 0 0 0;
   font-size: 30px;
 }
 
-.sell-price-input{
+.sell-price-input {
   display: inline-block;
-  padding: 0px 0 0 0 ;
+  padding: 0px 0 0 0;
   position: absolute;
-  margin: -53px 0 0 150px  ;
+  margin: -53px 0 0 150px;
   background-color: black;
-  border: none; 
+  border: none;
   height: 40px;
   align-items: center;
 
@@ -139,32 +133,28 @@
   border-radius: 10px;
   align-items: center;
   outline: none;
-
 }
 
-.forms{
+.forms {
   background-color: white;
   display: inline-block;
-  position:relative;
-  margin: -100px 0 0 0 ;
+  position: relative;
+  margin: -100px 0 0 0;
 }
 
-.sell-point-container{
+.sell-point-container {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin: 20px 0 0 0 ;
+  margin: 20px 0 0 0;
   /* background-color: white; */
 }
 
-.edit{
-  margin: 0 0 0 10px;;
+.edit {
+  margin: 0 0 0 10px;
 }
 
-.edit-id{
+.edit-id {
   margin: 5px 0 0 20px;
   text-align: right;
-
-  
 }
-
