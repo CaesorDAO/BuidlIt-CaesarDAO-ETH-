@@ -276,6 +276,7 @@ const ImageGrid = ({ properties, setProperties, account }) => {
       console.log("token in open for sale");
       setTradeStatus(true);
       setPrice(trade.price);
+      setOwner(trade.seller);
     }
   };
 
@@ -283,6 +284,9 @@ const ImageGrid = ({ properties, setProperties, account }) => {
     const token = await CaesarMarketplace.methods.tokens(apeProp.id).call();
     console.log(token);
     setLastSoldPrice(token.worth);
+    // if (token.ownerAddress !== "0x0000000000000000000000000000000000000000") {
+    //   setOwner(token.ownerAddress);
+    // }
   };
 
   useEffect(() => {
