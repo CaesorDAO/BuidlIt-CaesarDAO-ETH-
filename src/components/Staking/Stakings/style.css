@@ -1,0 +1,32 @@
+.searchBox{
+	
+    background-color: black; 
+    border-radius: 5px;
+    height: 20px;
+    
+    outline: none;
+}
+
+
+.inputField {
+    margin: 5px;
+    background-color: black !important;
+    font-size: 5px!important;
+    color: black;
+
+}
+
+.chips{   
+    background: red;
+    color: black;
+
+}
+
+.optionContainer { 
+  border: 2px solid;
+}
+
+.option { 
+  background-color: black;
+  color: black;
+}

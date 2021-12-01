@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState , Component} from "react";
+
 import CaesarStaking from "../../../ethereum/CaesarStaking";
+import AnimatedNumber from "animated-number-react";
 import {
   Container,
   Title,
@@ -8,6 +10,8 @@ import {
   UserEarning,
   PLatformEarning,
 } from "./Rewards-elements";
+
+
 
 var userTokenEarning = "10";
 
@@ -38,6 +42,7 @@ const Rewards = ({ account }) => {
     await CaesarStaking.methods.claimRewards(tokenIds).send({ from: account });
     window.location.reload();
   };
+
 
   return (
     <div>

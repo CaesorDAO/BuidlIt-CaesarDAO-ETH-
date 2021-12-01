@@ -244,6 +244,66 @@ const OnSale = styled.div`
   }
 `;
 
+const SellContainer = styled.div`
+  // background-color:white;
+  padding: 20px;
+  
+`;
+
+const SellingPrice = styled.div`
+  float: left;
+  border-radius: 5px; 
+  // background-color:red;
+  height: 40px; 
+  text-align:center;
+  vertical-align: middle;
+  padding-top:10px;
+
+ 
+
+`;
+
+
+const SellPrice = styled.h1`
+
+font-family: Roboto;
+font-size: 22px;
+font-weight: bold;
+font-stretch: normal;
+font-style: normal;
+line-height: normal;
+letter-spacing: normal;
+text-align: center;
+color: white;
+align-items:center;
+vertical-align: middle;
+`;
+
+
+const CancelSell = styled.button`
+display: inline-block;
+align-items:right;
+float: right;
+display: inline-block;
+border-radius:5px;
+height: 40px; 
+wisth: 80px;
+padding: 10px;
+font-weight: bold;
+font-size: 17.5px;
+background-color: black;
+border: 0.1px solid white;
+color:white;
+
+&:hover {
+  cursor: pointer;
+  border: 1px solid white;
+  background-color: white;
+  color:black;
+}
+
+`;
+
 const Left = styled.div`
   height: 500px;
   width: 400px;
@@ -283,6 +343,8 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+
+var currentSellingPrice = "50"
 
 const ImageGrid = ({ properties, setProperties, ownedTokensList }) => {
   const [apes, setApes] = useState([]);
@@ -376,7 +438,10 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList }) => {
                     <Left>
                       <ImgWrapper start={""}>
                         <ModalImg src={apeProp.image} alt={apeProp.name} />
-                        <div className="sell-point-container">
+
+                        
+
+                        {/* <div className="sell-point-container">
                           <div className="price-container">
                             <h1 className="matic"> MATIC </h1>
                             <forum className="forms">
@@ -388,7 +453,17 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList }) => {
                             </forum>
                           </div>
                           <button className="sell"> Sell </button>
-                        </div>
+                        </div> */}
+
+
+                      <SellContainer>
+                        <SellingPrice>
+                         <SellPrice>Selling Price : {currentSellingPrice} Matic  </SellPrice>
+                        </SellingPrice>
+                        <CancelSell>Cancel Sell </CancelSell>
+                      </SellContainer>
+
+
                       </ImgWrapper>
                     </Left>
                   </Content>
