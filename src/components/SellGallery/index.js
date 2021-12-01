@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { Route, Switch, Link, BrowserRouter as Router } from "react-router-dom";
 
 import Filters from "./Filters/index";
 import ImageGrid from "./ImageGrid/index";
@@ -7,6 +8,7 @@ import ImageGrid from "./ImageGrid/index";
 import ScrollButton from "./ScrollButton/ScrollButton";
 
 import CaesarNFT from "../../ethereum/CaesarNFT";
+import CaesarMarketplace from "../../ethereum/CaesarMarketplace";
 
 const Container = styled.div`
   display: grid;
@@ -42,6 +44,75 @@ const Container = styled.div`
   }
 `;
 
+const SellerNavbar = styled.div`
+  background-color: black;
+  display: flex;
+  flex-wrap: wrap;
+  width: auto;
+  /* padding: 0 0 20px 150px; */
+  margin-bottom: 30px;
+  justify-content: center;
+`;
+
+const Unlisted = styled(Link)`
+  color: white;
+  display: inline-block;
+  border: 0.1px solid white;
+  border-radius: 20px;
+  font-size: 20px;
+  color: white;
+  height: 50px;
+  width: 250px;
+  text-align: center;
+  /* margin: 0 20px 0 0; */
+  margin: 10px 20px;
+
+  &:hover {
+    cursor: pointer;
+    border: 1px solid white;
+    background-color: white;
+  }
+`;
+
+const OnSale = styled(Link)`
+  color: white;
+  display: inline-block;
+  text-align: center;
+
+  display: inline-block;
+  border: 0.1px solid white;
+  border-radius: 20px;
+  font-size: 20px;
+  color: white;
+  height: 50px;
+  width: 250px;
+  margin: 10px 20px;
+
+  &:hover {
+    cursor: pointer;
+    border: 1px solid white;
+    background-color: white;
+  }
+`;
+
+const Heading = styled.div`
+  font-family: Roboto;
+  font-size: 22px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: white;
+  margin: 0px 0 0 0;
+  padding: 10px 0 0 0px;
+
+  &:hover {
+    color: black;
+  }
+`;
+
 const SellGallery = ({ account }) => {
   const [properties, setProperties] = useState({
     bg: "",
@@ -55,35 +126,95 @@ const SellGallery = ({ account }) => {
   });
 
   const [ownedTokensList, setOwnedTokens] = useState([]);
+  const [saleTokensList, setSaleTokensList] = useState([]);
+  // const [tokensList, setTokensList] = useState([]);
+
+  const ownedTokens = async () => {
+    const ownedTokensArray = await CaesarNFT.methods
+      .walletQuery(account)
+      .call();
+
+    setOwnedTokens(ownedTokensArray);
+
+    // console.log("owned tokens array: ", ownedTokensArray);
+
+    // ownedTokensArray.map((tokenId) => {
+    //   setProperties({ id: tokenId });
+    // });
+  };
+
+  const calcSaleTokens = async () => {
+    const saleTokensArray = await CaesarMarketplace.methods
+      .getSales(account)
+      .call();
+    setSaleTokensList(saleTokensArray);
+
+    // console.log("sale tokens array: ", saleTokensArray);
+
+    // await saleTokensArray.map((tokenId) => {
+    //   setProperties({ id: tokenId });
+    // });
+  };
 
   useEffect(() => {
-    async function ownedTokens() {
-      const ownedTokensArray = await CaesarNFT.methods
-        .walletQuery(account)
-        .call();
-
-      setOwnedTokens(ownedTokensArray);
-
-      await ownedTokensArray.map((tokenId) => {
-        setProperties({ id: tokenId });
-      });
-    }
-
     if (account) ownedTokens();
   }, []);
 
   return (
-    <>
-      <Container>
-        <Filters properties={properties} setProperties={setProperties} />
-        <ImageGrid
-          properties={properties}
-          setProperties={setProperties}
-          ownedTokensList={ownedTokensList}
+    <Router>
+      <SellerNavbar>
+        <Unlisted to="/MyWalletGallery" onClick={ownedTokens}>
+          <Heading>Unlisted </Heading>
+        </Unlisted>
+        <OnSale to="/MyWalletGallery/onsale" onClick={calcSaleTokens}>
+          {" "}
+          <Heading>On Sale </Heading>{" "}
+        </OnSale>
+      </SellerNavbar>
+      <Switch>
+        <Route
+          exact
+          path="/MyWalletGallery"
+          component={() => (
+            <>
+              <Container>
+                <Filters
+                  properties={properties}
+                  setProperties={setProperties}
+                />
+                <ImageGrid
+                  properties={properties}
+                  setProperties={setProperties}
+                  ownedTokensList={ownedTokensList}
+                  account={account}
+                />
+              </Container>
+              <ScrollButton />
+            </>
+          )}
         />
-      </Container>
-      <ScrollButton />
-    </>
+        <Route
+          path="/MyWalletGallery/onsale"
+          component={() => (
+            <>
+              <Container>
+                <Filters
+                  properties={properties}
+                  setProperties={setProperties}
+                />
+                <ImageGrid
+                  properties={properties}
+                  setProperties={setProperties}
+                  ownedTokensList={saleTokensList}
+                  account={account}
+                />
+              </Container>
+              <ScrollButton />
+            </>
+          )}
+        />
+      </Switch>
+    </Router>
   );
 };
 

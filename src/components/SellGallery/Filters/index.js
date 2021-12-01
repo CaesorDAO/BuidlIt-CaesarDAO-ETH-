@@ -145,7 +145,7 @@ const Index = ({ properties, setProperties }) => {
         <Filter>
           {/* Search bar */}
           {/* <input type="number" /> */}
-          {/* <SearchBar
+          <SearchBar
             placeholder="SEARCH BY ID"
             type="number"
             value={tokenId}
@@ -153,7 +153,7 @@ const Index = ({ properties, setProperties }) => {
               setTokenId(e.target.value);
               setProperties({ id: e.target.value });
             }}
-          /> */}
+          />
 
           {attributes.map((attr) => {
             return (

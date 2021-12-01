@@ -40,7 +40,7 @@ const Container = styled.div`
   }
 `;
 
-const Index = () => {
+const Index = ({ account }) => {
   const [properties, setProperties] = useState({
     bg: "",
     clothes: "",
@@ -56,7 +56,11 @@ const Index = () => {
     <>
       <Container>
         <Filters properties={properties} setProperties={setProperties} />
-        <ImageGrid properties={properties} setProperties={setProperties} />
+        <ImageGrid
+          properties={properties}
+          setProperties={setProperties}
+          account={account}
+        />
       </Container>
       <ScrollButton />
     </>

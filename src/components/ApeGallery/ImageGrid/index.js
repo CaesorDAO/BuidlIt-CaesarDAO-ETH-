@@ -11,8 +11,12 @@ import Modal from "@mui/material/Modal";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import CaesarNFT from "../../../ethereum/CaesarNFT";
+import CaesarMarketplace from "../../../ethereum/CaesarMarketplace";
 
 const axios = require("axios");
+
+const openInHex = "0x4f70656e000000000000000000000000";
 
 export const ImgWrappers = styled.div`
   display: center;
@@ -205,24 +209,23 @@ const Left = styled.div`
 `;
 
 const CurrentOwnerContainer = styled.div`
-  border-radius:5px;
+  border-radius: 5px;
   display: inline-block;
   font-size: 25px;
-  padding-top:20px;
+  padding-top: 20px;
 
-  text-align:center;
-  float:center;
+  text-align: center;
+  float: center;
 
-  background-color:black;
+  background-color: black;
 `;
 
 const Owner = styled.div`
-display: inline-block;
-font-size:10px;
-text-align:center;
-float:center;
-
-`
+  display: inline-block;
+  font-size: 10px;
+  text-align: center;
+  float: center;
+`;
 
 const style = {
   position: "absolute",
@@ -236,10 +239,14 @@ const style = {
   p: 4,
 };
 
-const ImageGrid = ({ properties, setProperties }) => {
+const ImageGrid = ({ properties, setProperties, account }) => {
   const [apes, setApes] = useState(null);
   const [apeProp, setApeProp] = useState(null);
   const [open, setOpen] = useState(false);
+  const [owner, setOwner] = useState(null);
+  const [tradeStatus, setTradeStatus] = useState(false);
+  const [price, setPrice] = useState(null);
+  const [lastSoldPrice, setLastSoldPrice] = useState(null);
 
   const Fetch = async () => {
     // const url = "http://localhost:4000/gallery";
@@ -255,6 +262,54 @@ const ImageGrid = ({ properties, setProperties }) => {
   useEffect(() => {
     Fetch();
   }, [properties]);
+
+  const fetchOwner = async () => {
+    const owner = await CaesarNFT.methods.ownerOf(apeProp.id).call();
+    setOwner(owner);
+  };
+
+  const fetchTokenStatus = async () => {
+    const trade = await CaesarMarketplace.methods.trades(apeProp.id).call();
+    // console.log(trade);
+
+    if (trade.status === openInHex) {
+      console.log("token in open for sale");
+      setTradeStatus(true);
+      setPrice(trade.price);
+    }
+  };
+
+  const fetchPrice = async () => {
+    const token = await CaesarMarketplace.methods.tokens(apeProp.id).call();
+    console.log(token);
+    setLastSoldPrice(token.worth);
+  };
+
+  useEffect(() => {
+    setTradeStatus(false);
+    setPrice(null);
+    setOwner(null);
+    setLastSoldPrice(null);
+    if (apeProp) {
+      fetchOwner();
+      fetchTokenStatus();
+      fetchPrice();
+    }
+  }, [apeProp]);
+
+  // useEffect(() => {
+  //   if (apeProp && !tradeStatus) {
+  //     fetchPrice();
+  //   }
+  // }, [apeProp]);
+
+  const onBuy = async () => {
+    await CaesarMarketplace.methods.buyCsrNFT(apeProp.id).send({
+      from: account,
+      value: price,
+    });
+    window.location.reload();
+  };
 
   return (
     <Container>
@@ -301,17 +356,29 @@ const ImageGrid = ({ properties, setProperties }) => {
                     <Left>
                       <ImgWrapper start={""}>
                         <ModalImg src={apeProp.image} alt={apeProp.name} />
-                 
-                       
-                        <button className="objkt"> View on Objkt.com </button>
+
+                        {tradeStatus ? (
+                          <>
+                            <button className="objkt" onClick={onBuy}>
+                              {" "}
+                              Buy Now{" "}
+                            </button>
+                            <div>Price: {price} </div>
+                          </>
+                        ) : (
+                          <>
+                            <button className="objkt"> Not on sale </button>
+                            <div>Worth: {lastSoldPrice} </div>
+                          </>
+                        )}
+
+                        <div>Owner: {owner}</div>
 
                         {/* <CurrentOwnerContainer> Owner :   
                          <Owner>  0xdd48e11744c2b003B59A1D2CED61703a10306bb1</Owner>
                        </CurrentOwnerContainer>
                          */}
-                        
                       </ImgWrapper>
-                      
                     </Left>
 
                     <Right>

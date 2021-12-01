@@ -3,7 +3,7 @@ import abi from "./build/CaesarMarketplace.json";
 
 const CaesarMarketplace = new web3.eth.Contract(
   abi,
-  "0x1997F800b0FB2Fd1C0bAEb04C7e58fb800714049"
+  "0x5F2e72a7aD4c0144CeA24e32d482D28D611f7f1b"
 );
 
 export default CaesarMarketplace;

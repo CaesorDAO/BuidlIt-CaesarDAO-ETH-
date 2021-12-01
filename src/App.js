@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import Navbars from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -110,11 +110,26 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={() => <Minting />} />
 
-        <Route exact path="/gallery" component={() => <ApeGallery />} />
+        <Route
+          exact
+          path="/gallery"
+          component={() => <ApeGallery account={account} />}
+        />
         <Route
           exact
           path="/MyWalletGallery"
           component={() => <SellGallery account={account} />}
+        />
+        <Route
+          exact
+          path="/MyWalletGallery/onsale"
+          component={() => (
+            <Redirect
+              to={{
+                pathname: "/MyWalletGallery",
+              }}
+            />
+          )}
         />
         <Route
           exact

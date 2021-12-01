@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
+import web3 from "../../../ethereum/web3";
+
 // import Modal from "../Modal/Modal";
 import "./style.css";
 // import Ape1 from "../../../images/ape1.png";
@@ -15,7 +17,12 @@ import Edit from "../../../images/edit.png";
 
 import "react-lazy-load-image-component/src/effects/blur.css";
 
+import CaesarNFT from "../../../ethereum/CaesarNFT";
+import CaesarMarketplace from "../../../ethereum/CaesarMarketplace";
+
 const axios = require("axios");
+
+const openInHex = "0x4f70656e000000000000000000000000";
 
 export const ImgWrappers = styled.div`
   display: center;
@@ -244,64 +251,76 @@ const OnSale = styled.div`
   }
 `;
 
+const ApproveButton = styled.div`
+  margin: auto;
+  height: 50px;
+  width: fit-content;
+  padding: 10px 20px;
+  background-color: red;
+  border-radius: 10px;
+  font-size: 20px;
+
+  display: grid;
+  align-content: center;
+  transition: 0.5s ease-in;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+    border: 0.2px solid white;
+  }
+`;
+
 const SellContainer = styled.div`
   // background-color:white;
   padding: 20px;
-  
 `;
 
 const SellingPrice = styled.div`
   float: left;
-  border-radius: 5px; 
+  border-radius: 5px;
   // background-color:red;
-  height: 40px; 
-  text-align:center;
+  height: 40px;
+  text-align: center;
   vertical-align: middle;
-  padding-top:10px;
-
- 
-
+  padding-top: 10px;
 `;
-
 
 const SellPrice = styled.h1`
-
-font-family: Roboto;
-font-size: 22px;
-font-weight: bold;
-font-stretch: normal;
-font-style: normal;
-line-height: normal;
-letter-spacing: normal;
-text-align: center;
-color: white;
-align-items:center;
-vertical-align: middle;
+  font-family: Roboto;
+  font-size: 22px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: white;
+  align-items: center;
+  vertical-align: middle;
 `;
 
-
 const CancelSell = styled.button`
-display: inline-block;
-align-items:right;
-float: right;
-display: inline-block;
-border-radius:5px;
-height: 40px; 
-wisth: 80px;
-padding: 10px;
-font-weight: bold;
-font-size: 17.5px;
-background-color: black;
-border: 0.1px solid white;
-color:white;
+  display: inline-block;
+  align-items: right;
+  float: right;
+  display: inline-block;
+  border-radius: 5px;
+  height: 40px;
+  /* width: 80px; */
+  padding: 10px;
+  font-weight: bold;
+  font-size: 17.5px;
+  background-color: black;
+  border: 0.1px solid white;
+  color: white;
 
-&:hover {
-  cursor: pointer;
-  border: 1px solid white;
-  background-color: white;
-  color:black;
-}
-
+  &:hover {
+    cursor: pointer;
+    border: 1px solid white;
+    background-color: white;
+    color: black;
+  }
 `;
 
 const Left = styled.div`
@@ -344,12 +363,17 @@ const style = {
   p: 4,
 };
 
-var currentSellingPrice = "50"
+var currentSellingPrice = "50";
+const marketplaceContractAddress = "0x5F2e72a7aD4c0144CeA24e32d482D28D611f7f1b";
 
-const ImageGrid = ({ properties, setProperties, ownedTokensList }) => {
+const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
   const [apes, setApes] = useState([]);
   const [apeProp, setApeProp] = useState(null);
   const [open, setOpen] = useState(false);
+  const [isApproved, setIsApproved] = useState(false);
+  const [sellPrice, setSellPrice] = useState("");
+  const [isTradeOpen, setIsTradeOpen] = useState(false);
+  const [tradePrice, setTradePrice] = useState(null);
 
   const Fetch = async () => {
     // const url = "http://localhost:4000/gallery";
@@ -357,18 +381,73 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList }) => {
 
     if (properties) {
       const res = await axios.post(url, properties);
-      console.log(res.data.data);
+      // console.log(res.data.data);
       setApes(res.data.data);
+    }
+  };
+
+  const checkIfApproved = async () => {
+    const isApproved = await CaesarNFT.methods
+      .isApprovedForAll(account, marketplaceContractAddress)
+      .call();
+    setIsApproved(isApproved);
+  };
+
+  const checkIfTradeisOpen = async () => {
+    try {
+      const trade = await CaesarMarketplace.methods.trades(apeProp.id).call();
+      console.log("trade: ", trade);
+
+      // let tradeStatus = await web3.utils.hexToAscii(trade.status);
+
+      if (trade.status === openInHex) {
+        console.log("trade is open");
+        setIsTradeOpen(true);
+        setTradePrice(trade.price);
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
   useEffect(() => {
     Fetch();
+    if (account) checkIfApproved();
+
+    console.log(isTradeOpen);
   }, [properties]);
+
+  useEffect(() => {
+    if (apeProp) checkIfTradeisOpen();
+  }, [apeProp]);
+
+  const onApprove = async () => {
+    await CaesarNFT.methods
+      .setApprovalForAll(marketplaceContractAddress, true)
+      .send({ from: account });
+    // window.location.reload();
+    checkIfApproved();
+  };
+
+  const onSell = async (tokenId) => {
+    console.log("token id to sell: ", tokenId);
+    console.log("price to sell: ", sellPrice);
+    await CaesarMarketplace.methods
+      .openTrade(tokenId, sellPrice)
+      .send({ from: account });
+    window.location.reload();
+  };
+
+  const onCancelTrade = async (tokenId) => {
+    await CaesarMarketplace.methods
+      .cancelTrade(tokenId)
+      .send({ from: account });
+    window.location.reload();
+  };
 
   return (
     <Container>
-      <SellerNavbar>
+      {/* <SellerNavbar>
         <Unlisted>
           <Heading>Unlisted </Heading>
         </Unlisted>
@@ -376,15 +455,18 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList }) => {
           {" "}
           <Heading>On Sale </Heading>{" "}
         </OnSale>
-      </SellerNavbar>
+      </SellerNavbar> */}
+
       {/* <Text>ApeGallery Images</Text> */}
       {apes.length !== 0 ? (
         <GridView>
           {ownedTokensList.map((tokenId, index) => {
             let tokId = parseInt(tokenId);
-            console.log("tokId: ", tokId);
-            let ape = apes[tokId];
-            console.log("apes in tokId: ", apes[tokId]);
+            // console.log("tokId: ", tokId);
+            // console.log("apes array: ", apes);
+            let ape = apes[tokId - 1];
+            // let ape = apes[index];
+            // console.log("apes in tokId: ", apes[tokId - 1]);
             // console.log("ape", typeof parseInt(tokenId));
             // console.log(apes[0]);
             return (
@@ -439,31 +521,56 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList }) => {
                       <ImgWrapper start={""}>
                         <ModalImg src={apeProp.image} alt={apeProp.name} />
 
-                        
+                        {/* Unlisted one's modal */}
+                        {!isTradeOpen ? (
+                          isApproved ? (
+                            <div className="sell-point-container">
+                              <div className="price-container">
+                                <h1 className="matic"> MATIC </h1>
+                                <forum className="forms">
+                                  <input
+                                    type="number"
+                                    placeholder="Price"
+                                    className="sell-price-input"
+                                    value={sellPrice}
+                                    onChange={(e) =>
+                                      setSellPrice(e.target.value)
+                                    }
+                                  ></input>
+                                </forum>
+                              </div>
+                              <button
+                                className="sell"
+                                onClick={() => onSell(apeProp.id)}
+                              >
+                                {" "}
+                                Sell{" "}
+                              </button>
+                            </div>
+                          ) : (
+                            //  Approve button
+                            <SellContainer>
+                              <ApproveButton onClick={onApprove}>
+                                Approve For Trade
+                              </ApproveButton>
+                            </SellContainer>
+                          )
+                        ) : (
+                          <SellContainer>
+                            <SellingPrice>
+                              <SellPrice>
+                                Selling Price : {tradePrice} Matic{" "}
+                              </SellPrice>
+                            </SellingPrice>
+                            <CancelSell
+                              onClick={() => onCancelTrade(apeProp.id)}
+                            >
+                              Cancel Sell{" "}
+                            </CancelSell>
+                          </SellContainer>
+                        )}
 
-                        {/* <div className="sell-point-container">
-                          <div className="price-container">
-                            <h1 className="matic"> MATIC </h1>
-                            <forum className="forms">
-                              <input
-                                type="number"
-                                placeholder="Price"
-                                className="sell-price-input"
-                              ></input>
-                            </forum>
-                          </div>
-                          <button className="sell"> Sell </button>
-                        </div> */}
-
-
-                      <SellContainer>
-                        <SellingPrice>
-                         <SellPrice>Selling Price : {currentSellingPrice} Matic  </SellPrice>
-                        </SellingPrice>
-                        <CancelSell>Cancel Sell </CancelSell>
-                      </SellContainer>
-
-
+                        {/* On sale modal */}
                       </ImgWrapper>
                     </Left>
                   </Content>
