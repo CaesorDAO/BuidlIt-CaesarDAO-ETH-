@@ -35,8 +35,6 @@
 
 .objkt {
   border-radius: 10px;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-  border: solid 3px #fff;
   background-color: #161818;
 
   width: 400px;
@@ -93,15 +91,29 @@
 
  .owner{
    margin: auto;
-   font-size: medium;
+   font-size: 25px;
+   background-color: #161818;
    margin: 0px 0 0 0 !important;
    align-items: center;
+   border: solid 1px #fff;
    text-align: center;
-   /* background-color: grey; */
-   border-radius: 10px;
+   border-top-left-radius: 10px;
+   border-top-right-radius: 10px;
    height: 40px;
    margin: 15px;
-   padding: 5px 0 10px 0 ;
-
+   padding: 7.5px 0 10px 0 ;
  };
 
+
+.not-on-sale{
+  background-color: #161818;
+  align-items: center;
+   border: solid 1px #fff;
+   text-align: center;
+   border-top-left-radius: 10px;
+   border-top-right-radius: 10px;
+   height: 40px;
+   margin: 15px;
+
+
+}

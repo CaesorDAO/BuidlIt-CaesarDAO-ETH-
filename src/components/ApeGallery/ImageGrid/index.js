@@ -62,9 +62,8 @@ export const ModalImg = styled.img`
   /* vertical-align: middle; */
   display: block;
   position: relative;
-  border-radius: 5%;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 `;
 
 const Container = styled.div`
@@ -221,6 +220,21 @@ const Owner = styled.div`
   float: center;
 `;
 
+const NotOnSale = styled.button`
+background-color: #161818;
+align-items: center;
+width: 400px;
+ border: solid 1px #fff;
+ text-align: center;
+ color:white;
+ font-size:30px;
+ border-bottom-left-radius: 10px;
+ border-bottom-right-radius: 10px;
+ height: 50px;
+ border: solid 1px #fff;
+ text-align: center;
+`
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -261,6 +275,12 @@ const ImageGrid = ({ properties, setProperties, account }) => {
     const owner = await CaesarNFT.methods.ownerOf(apeProp.id).call();
     setOwner(owner);
   };
+
+
+
+  const owners = owner
+  ? owner.slice(0, 4) + "...." + owner.slice(-4 )
+  : null;
 
 
   const fetchTokenStatus = async () => {
@@ -354,22 +374,29 @@ const ImageGrid = ({ properties, setProperties, account }) => {
                   <Content>
                     <Left>
                       <ImgWrapper start={""}>
+                      <div className="owner">Owner: {owners}</div>
                         <ModalImg src={apeProp.image} alt={apeProp.name} />
 
                         {tradeStatus ? (
                           <>
-                            <div className="worth">Price: {price} </div>
-                            <button className="objkt" onClick={onBuy}>
+                           
+                            {/* <button className="objkt" onClick={onBuy}>
                               {" "}
                               Buy Now{" "}
-                            </button>
+                            </button> */}
+                            <NotOnSale onClick={onBuy}> 
+                            {" "}
+                            Buy now {" "}
+                            </NotOnSale>
+                            <div className="worth">Price: {price} </div>
                             
                           </>
                         ) : (
                           <>
-                          <div className="owner">Owner: {owner}</div>
-                          <div className="worth">Worth: {lastSoldPrice} </div>
-                            <button className="objkt"> Not on sale </button>
+                         
+                          
+                            <NotOnSale> Not on sale</NotOnSale>
+                            <div className="worth">Worth: {lastSoldPrice} </div>
                             
                           </>
                         )}
