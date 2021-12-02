@@ -33,7 +33,7 @@ const Stakings = ({ account }) => {
 
 
         <Dropdown>
-        <Multiselect
+        {/* <Multiselect
           isObject={false}
           onKeyPressFn={function noRefCheck(){}}
           onRemove={function noRefCheck(){}}
@@ -46,7 +46,7 @@ const Stakings = ({ account }) => {
             'Option 4',
             'Option 5'
               ]}
-/>
+/> */}
         </Dropdown>
 
         {/* <Textwrapper>

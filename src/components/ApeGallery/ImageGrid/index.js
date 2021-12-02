@@ -25,12 +25,6 @@ export const ImgWrappers = styled.div`
 
 export const ImgWrapper = styled.div`
   display: center;
-  /* margin: 20px 0 0 0; */
-  /* max-height: 400px;
-  max-width: 400px;
-  height: 30vw;
-  width: 30vw; */
-
   width: 400px;
   height: 450px;
 
@@ -363,20 +357,23 @@ const ImageGrid = ({ properties, setProperties, account }) => {
 
                         {tradeStatus ? (
                           <>
+                            <div className="worth">Price: {price} </div>
                             <button className="objkt" onClick={onBuy}>
                               {" "}
                               Buy Now{" "}
                             </button>
-                            <div>Price: {price} </div>
+                            
                           </>
                         ) : (
                           <>
+                          <div className="owner">Owner: {owner}</div>
+                          <div className="worth">Worth: {lastSoldPrice} </div>
                             <button className="objkt"> Not on sale </button>
-                            <div>Worth: {lastSoldPrice} </div>
+                            
                           </>
                         )}
 
-                        <div>Owner: {owner}</div>
+                        
 
                         {/* <CurrentOwnerContainer> Owner :   
                          <Owner>  0xdd48e11744c2b003B59A1D2CED61703a10306bb1</Owner>
