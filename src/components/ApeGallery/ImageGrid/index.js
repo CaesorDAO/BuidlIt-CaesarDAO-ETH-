@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 // import Modal from "../Modal/Modal";
 import "./style.css";
@@ -221,19 +222,19 @@ const Owner = styled.div`
 `;
 
 const NotOnSale = styled.button`
-background-color: #161818;
-align-items: center;
-width: 400px;
- border: solid 1px #fff;
- text-align: center;
- color:white;
- font-size:30px;
- border-bottom-left-radius: 10px;
- border-bottom-right-radius: 10px;
- height: 50px;
- border: solid 1px #fff;
- text-align: center;
-`
+  background-color: #161818;
+  align-items: center;
+  width: 400px;
+  border: solid 1px #fff;
+  text-align: center;
+  color: white;
+  font-size: 30px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  height: 50px;
+  border: solid 1px #fff;
+  text-align: center;
+`;
 
 const style = {
   position: "absolute",
@@ -276,24 +277,9 @@ const ImageGrid = ({ properties, setProperties, account }) => {
     setOwner(owner);
   };
 
-
-
-  const owners = owner
-  ? owner.slice(0, 4) + "...." + owner.slice(-4 )
-  : null;
-
-
-  const fetchTokenStatus = async () => {
-    const trade = await CaesarMarketplace.methods.trades(apeProp.id).call();
-    // console.log(trade);
-
-    if (trade.status === openInHex) {
-      console.log("token in open for sale");
-      setTradeStatus(true);
-      setPrice(trade.price);
-      setOwner(trade.seller);
-    }
-  };
+  const ownerAddress = owner
+    ? owner.slice(0, 4) + "...." + owner.slice(-4)
+    : null;
 
   const fetchPrice = async () => {
     const token = await CaesarMarketplace.methods.tokens(apeProp.id).call();
@@ -304,15 +290,28 @@ const ImageGrid = ({ properties, setProperties, account }) => {
     // }
   };
 
+  const fetchTokenStatus = async () => {
+    const trade = await CaesarMarketplace.methods.trades(apeProp.id).call();
+    // console.log(trade);
+
+    if (trade.status === openInHex) {
+      console.log("token in open for sale");
+      setTradeStatus(true);
+      setPrice(trade.price);
+      setOwner(trade.seller);
+    } else {
+      fetchOwner();
+      fetchPrice();
+    }
+  };
+
   useEffect(() => {
     setTradeStatus(false);
     setPrice(null);
     setOwner(null);
     setLastSoldPrice(null);
     if (apeProp) {
-      fetchOwner();
       fetchTokenStatus();
-      fetchPrice();
     }
   }, [apeProp]);
 
@@ -374,34 +373,31 @@ const ImageGrid = ({ properties, setProperties, account }) => {
                   <Content>
                     <Left>
                       <ImgWrapper start={""}>
-                      <div className="owner">Owner: {owners}</div>
+                        <div className="owner">
+                          <a
+                            href={`https://rinkeby.etherscan.io/address/${owner}`}
+                            target="_blank"
+                          >
+                            Owner: {ownerAddress}
+                          </a>
+                        </div>
                         <ModalImg src={apeProp.image} alt={apeProp.name} />
 
                         {tradeStatus ? (
                           <>
-                           
                             {/* <button className="objkt" onClick={onBuy}>
                               {" "}
                               Buy Now{" "}
                             </button> */}
-                            <NotOnSale onClick={onBuy}> 
-                            {" "}
-                            Buy now {" "}
-                            </NotOnSale>
+                            <NotOnSale onClick={onBuy}> Buy now </NotOnSale>
                             <div className="worth">Price: {price} </div>
-                            
                           </>
                         ) : (
                           <>
-                         
-                          
                             <NotOnSale> Not on sale</NotOnSale>
                             <div className="worth">Worth: {lastSoldPrice} </div>
-                            
                           </>
                         )}
-
-                        
 
                         {/* <CurrentOwnerContainer> Owner :   
                          <Owner>  0xdd48e11744c2b003B59A1D2CED61703a10306bb1</Owner>

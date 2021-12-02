@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Route, Switch, Link, BrowserRouter as Router } from "react-router-dom";
+import {
+  Route,
+  Switch,
+  NavLink,
+  BrowserRouter as Router,
+} from "react-router-dom";
 
 import Filters from "./Filters/index";
 import ImageGrid from "./ImageGrid/index";
@@ -54,7 +59,7 @@ const SellerNavbar = styled.div`
   justify-content: center;
 `;
 
-const Unlisted = styled(Link)`
+const Unlisted = styled(NavLink)`
   color: white;
   display: inline-block;
   border: 0.1px solid white;
@@ -71,10 +76,20 @@ const Unlisted = styled(Link)`
     cursor: pointer;
     border: 1px solid white;
     background-color: white;
+    div {
+      color: black;
+    }
+  }
+
+  &.selected {
+    background-color: white;
+    div {
+      color: black;
+    }
   }
 `;
 
-const OnSale = styled(Link)`
+const OnSale = styled(NavLink)`
   color: white;
   display: inline-block;
   text-align: center;
@@ -92,6 +107,16 @@ const OnSale = styled(Link)`
     cursor: pointer;
     border: 1px solid white;
     background-color: white;
+    div {
+      color: black;
+    }
+  }
+
+  &.selected {
+    background-color: white;
+    div {
+      color: black;
+    }
   }
 `;
 
@@ -163,10 +188,20 @@ const SellGallery = ({ account }) => {
   return (
     <Router>
       <SellerNavbar>
-        <Unlisted to="/MyWalletGallery" onClick={ownedTokens}>
+        <Unlisted
+          exact
+          to="/MyWalletGallery"
+          activeClassName="selected"
+          onClick={ownedTokens}
+        >
           <Heading>Unlisted </Heading>
         </Unlisted>
-        <OnSale to="/MyWalletGallery/onsale" onClick={calcSaleTokens}>
+        <OnSale
+          exact
+          to="/MyWalletGallery/onsale"
+          activeClassName="selected"
+          onClick={calcSaleTokens}
+        >
           {" "}
           <Heading>On Sale </Heading>{" "}
         </OnSale>
