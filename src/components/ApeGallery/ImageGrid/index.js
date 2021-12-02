@@ -262,6 +262,7 @@ const ImageGrid = ({ properties, setProperties, account }) => {
     setOwner(owner);
   };
 
+
   const fetchTokenStatus = async () => {
     const trade = await CaesarMarketplace.methods.trades(apeProp.id).call();
     // console.log(trade);

@@ -288,7 +288,7 @@ const SellingPrice = styled.div`
 
 const SellPrice = styled.h1`
   font-family: Roboto;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -310,7 +310,7 @@ const CancelSell = styled.button`
   /* width: 80px; */
   padding: 10px;
   font-weight: bold;
-  font-size: 17.5px;
+  font-size: 15.5px;
   background-color: black;
   border: 0.1px solid white;
   color: white;
