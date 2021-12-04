@@ -14,10 +14,10 @@
 
 .popup-containers {
   max-height: 80vh;
-  max-width: 60vw;
+  max-width: 80vw;
   height: 750px;
   overflow-y: auto;
-  width: 1000px !important;
+  width: 800px !important;
   background-color: black !important;
   color: blanchedalmond;
   border: 2px solid blanchedalmond;
@@ -27,11 +27,8 @@
   align-content: center !important;
 }
 
-@media screen and (min-width: 1080px) {
-  /* .popup-container {
-    
-  } */
-}
+
+
 
 .objkt {
   border-radius: 10px;
@@ -120,7 +117,7 @@
   display: inline-block;
   padding: 0px 0 0 0;
   position: absolute;
-  margin: -53px 0 0 150px;
+  margin: -57px 0 0 150px;
   background-color: black;
   border: none;
   height: 40px;
