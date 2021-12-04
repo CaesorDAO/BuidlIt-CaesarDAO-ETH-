@@ -204,7 +204,7 @@ const Left = styled.div`
 
 const CurrentOwnerContainer = styled.div`
   border-radius: 5px;
-  display: inline-block;
+  display: block;
   font-size: 25px;
   padding-top: 20px;
 
@@ -215,7 +215,7 @@ const CurrentOwnerContainer = styled.div`
 `;
 
 const Owner = styled.div`
-  display: inline-block;
+  display: block;
   font-size: 10px;
   text-align: center;
   float: center;
@@ -256,6 +256,8 @@ const ImageGrid = ({ properties, setProperties, account }) => {
   const [tradeStatus, setTradeStatus] = useState(false);
   const [price, setPrice] = useState(null);
   const [lastSoldPrice, setLastSoldPrice] = useState(null);
+  const [totalSupply, setTotalSupply] = useState(0);
+  const [updatedName, setUpdatedName] = useState("");
 
   const Fetch = async () => {
     // const url = "http://localhost:4000/gallery";
@@ -276,10 +278,6 @@ const ImageGrid = ({ properties, setProperties, account }) => {
     const owner = await CaesarNFT.methods.ownerOf(apeProp.id).call();
     setOwner(owner);
   };
-
-  const ownerAddress = owner
-    ? owner.slice(0, 4) + "...." + owner.slice(-4)
-    : null;
 
   const fetchPrice = async () => {
     const token = await CaesarMarketplace.methods.tokens(apeProp.id).call();
@@ -305,6 +303,17 @@ const ImageGrid = ({ properties, setProperties, account }) => {
     }
   };
 
+  const fetchTotalSupply = async () => {
+    const supply = await CaesarNFT.methods.totalSupply().call();
+    console.log(supply);
+    setTotalSupply(supply);
+  };
+
+  const fetchNewName = async () => {
+    const name = await CaesarNFT.methods.getName(apeProp.id).call();
+    setUpdatedName(name);
+  };
+
   useEffect(() => {
     setTradeStatus(false);
     setPrice(null);
@@ -312,8 +321,17 @@ const ImageGrid = ({ properties, setProperties, account }) => {
     setLastSoldPrice(null);
     if (apeProp) {
       fetchTokenStatus();
+      fetchNewName();
     }
   }, [apeProp]);
+
+  useEffect(() => {
+    fetchTotalSupply();
+  }, []);
+
+  const ownerAddress = owner
+    ? owner.slice(0, 4) + "...." + owner.slice(-4)
+    : null;
 
   // useEffect(() => {
   //   if (apeProp && !tradeStatus) {
@@ -334,7 +352,8 @@ const ImageGrid = ({ properties, setProperties, account }) => {
       {/* <Text>ApeGallery Images</Text> */}
       {apes ? (
         <GridView>
-          {apes.map((ape) => {
+          {apes.map((ape, index) => {
+            if (index >= totalSupply) return null;
             return (
               <div key={ape.id}>
                 <Card
@@ -369,7 +388,9 @@ const ImageGrid = ({ properties, setProperties, account }) => {
             <Box sx={style} className="popup-container">
               {apeProp ? (
                 <>
-                  <div className="number">{apeProp.name}</div>
+                  <div className="number">
+                    {updatedName === "" ? apeProp.name : updatedName}
+                  </div>
                   <Content>
                     <Left>
                       <ImgWrapper start={""}>

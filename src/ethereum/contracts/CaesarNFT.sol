@@ -1305,17 +1305,27 @@ abstract contract Ownable is Context {
 
 pragma solidity ^0.8.0;
 
+import {IERC20, SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+
 
 contract CaesarNFT is ERC721Enumerable, Ownable {
     using Strings for uint256;
+    using SafeERC20 for IERC20;
+
+    IERC20 public immutable csrToken;
 
     string _baseTokenURI;
     string public baseExtension = ".json";
     
     uint256 public reserve = 1100;
     uint256 public constant caesarSupply = 10000;
-    uint256 public caesarPrice = 0.000001 ether;
+    uint256 public caesarPrice = 1000 wei;
     bool public saleActive = false;
+    uint256 public renamePrice = 100 wei;
+
+    mapping(uint256 => string) private names;
+
+    event NameChange(uint256 indexed _tokenId, string _name);
 
     struct Whitelist {
         address addr;
@@ -1326,7 +1336,8 @@ contract CaesarNFT is ERC721Enumerable, Ownable {
     
     address[] whitelistAddr;
 
-    constructor(string memory baseURI) ERC721("CaesarNFT", "CAESAR")  {
+    constructor(string memory baseURI, address csrTokenAddress) ERC721("CaesarNFT", "CAESAR")  {
+        csrToken = IERC20(csrTokenAddress);
         setBaseURI(baseURI);
     }
 
@@ -1432,5 +1443,33 @@ contract CaesarNFT is ERC721Enumerable, Ownable {
     function withdraw() public onlyOwner {
         uint balance = address(this).balance;
         payable(msg.sender).transfer(balance);
+    }
+
+    function setName(uint256 _tokenId, string memory _name)
+        public
+        returns (string memory)
+    {
+        require(ownerOf(_tokenId) == msg.sender, "Only caesar owner can name it");
+        names[_tokenId] = _name;
+        uint256 balance = csrToken.balanceOf(msg.sender);
+        require(balance > renamePrice, "Not enough csr tokens to rename");
+        csrToken.safeTransferFrom(msg.sender, address(this), renamePrice);
+
+        emit NameChange(_tokenId, _name);
+        return _name;
+    }
+
+    function getName(uint256 _tokenId) public view returns (string memory) {
+        return names[_tokenId];
+    }
+
+    function updateRenamePrice(uint256 _newRenamePrice) public onlyOwner {
+        renamePrice = _newRenamePrice;
+    }
+
+    function withdrawCsrTokens() public onlyOwner {
+        uint256 _amount = csrToken.balanceOf(address(this));
+        require(_amount > 0, "No csr tokens");
+        csrToken.safeTransfer(msg.sender, _amount);
     }
 }

@@ -19,6 +19,7 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 
 import CaesarNFT from "../../../ethereum/CaesarNFT";
 import CaesarMarketplace from "../../../ethereum/CaesarMarketplace";
+import CSRToken from "../../../ethereum/CSRToken";
 
 const axios = require("axios");
 
@@ -150,10 +151,7 @@ const Card = styled.div`
   }
 
   @media screen and (max-width: 500px) {
-    
   }
-
-
 `;
 
 const Rank = styled.div`
@@ -370,7 +368,7 @@ const style = {
 };
 
 var currentSellingPrice = "50";
-const marketplaceContractAddress = "0x5F2e72a7aD4c0144CeA24e32d482D28D611f7f1b";
+const marketplaceContractAddress = "0x924088B2f8FEB5fF02C169B24AF5525d3339453c";
 
 const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
   const [apes, setApes] = useState([]);
@@ -380,6 +378,10 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
   const [sellPrice, setSellPrice] = useState("");
   const [isTradeOpen, setIsTradeOpen] = useState(false);
   const [tradePrice, setTradePrice] = useState(null);
+  const [newName, setNewName] = useState(null);
+  const [editingName, setEditingName] = useState(false);
+  const [renameprice, setRenamePrice] = useState(0);
+  const [updatedName, setUpdatedName] = useState("");
 
   const Fetch = async () => {
     // const url = "http://localhost:4000/gallery";
@@ -416,6 +418,11 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
     }
   };
 
+  const fetchNewName = async () => {
+    const name = await CaesarNFT.methods.getName(apeProp.id).call();
+    setUpdatedName(name);
+  };
+
   useEffect(() => {
     Fetch();
     if (account) checkIfApproved();
@@ -424,7 +431,10 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
   }, [properties]);
 
   useEffect(() => {
-    if (apeProp) checkIfTradeisOpen();
+    if (apeProp) {
+      checkIfTradeisOpen();
+      fetchNewName();
+    }
   }, [apeProp]);
 
   const onApprove = async () => {
@@ -450,6 +460,28 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
       .send({ from: account });
     window.location.reload();
   };
+
+  const nftContractAddress = "0xD58d8C5274483B761BB375243F1cC88adBa151C5";
+
+  const onConfirmName = async () => {
+    if (apeProp) {
+      await CSRToken.methods
+        .approve(nftContractAddress, renameprice)
+        .send({ from: account });
+      await CaesarNFT.methods
+        .setName(apeProp.id, newName)
+        .send({ from: account });
+      window.location.reload();
+    }
+  };
+
+  useEffect(() => {
+    const fetch = async () => {
+      const renameprice = await CaesarNFT.methods.renamePrice().call();
+      setRenamePrice(renameprice);
+    };
+    fetch();
+  }, []);
 
   return (
     <Container>
@@ -514,18 +546,36 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
               {apeProp ? (
                 <>
                   <div className="number">
-                    {apeProp.name}
-                    <Edits>
-                      {" "}
-                      Edit Id
-                      <img src={Edit} height="16px" className="edit"></img>
-                    </Edits>
+                    {editingName ? (
+                      <>
+                        <input
+                          type="name"
+                          placeholder="New name"
+                          value={newName}
+                          onChange={(e) => setNewName(e.target.value)}
+                        ></input>
+                        <button onClick={onConfirmName}>Confirm</button>
+                      </>
+                    ) : (
+                      <>
+                        {updatedName === "" ? apeProp.name : updatedName}
+                        <Edits onClick={() => setEditingName(true)}>
+                          {" "}
+                          Edit Name
+                          <img src={Edit} height="16px" className="edit"></img>
+                        </Edits>
+                        <div> {renameprice / 10 ** 18} CSR</div>
+                      </>
+                    )}
                   </div>
 
-                  <Content>
+                  <Content onClick={() => setEditingName(false)}>
                     <Left>
                       <ImgWrapper start={""}>
-                        <ModalImg src={apeProp.image} alt={apeProp.name} />
+                        <ModalImg
+                          src={apeProp.image}
+                          alt={updatedName === "" ? apeProp.name : updatedName}
+                        />
 
                         {/* Unlisted one's modal */}
                         {!isTradeOpen ? (

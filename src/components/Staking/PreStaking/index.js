@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Container, Title, Description, Button, ButtonApproved } from "./PreStakingelements";
+import {
+  Container,
+  Title,
+  Description,
+  Button,
+  ButtonApproved,
+} from "./PreStakingelements";
 import CaesarNFT from "../../../ethereum/CaesarNFT";
 
-const stakingContractAddress = "0xD3C2AE5146DbE8b74323E2280Ec7CAA49ae94d64";
+const stakingContractAddress = "0x3A316e28dfb781fbdc9619fE7f20b59a3a9A523B";
 
 const Prestaking = ({ account }) => {
   const [isApproved, setisApproved] = useState(false);
