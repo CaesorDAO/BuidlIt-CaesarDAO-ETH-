@@ -17,7 +17,7 @@ const Navbars = ({ account, onConnectWallet, onDisconnect, level }) => {
             <img alt="" src={Image} className="logo" />{" "}
           </Link>
         </Navbar.Brand>
-{/* 
+        {/* 
         <div
           className="gallery-nav"
           style={{
@@ -28,42 +28,55 @@ const Navbars = ({ account, onConnectWallet, onDisconnect, level }) => {
             padding: "10px",
           }}
         > */}
-          <div className="gallery-nav">
-            <Link
-              // to="/"
-              to="/gallery"
-            >
-              Marketplace
+        <div className="gallery-nav">
+          <Link
+            // to="/"
+            to="/gallery"
+          >
+            Marketplace
+          </Link>
+          {/* <div className="hide">Coming soon</div> */}
+        </div>
+
+        <div className="gallery-nav">
+          <Link
+            // to="/"
+            to="/mint"
+          >
+            Mint
+          </Link>
+          {/* <div className="hide">Coming soon</div> */}
+        </div>
+
+        <div className="gallery-nav">
+          <Link to="/Staking">Staking</Link>
+          {/* <div className="hide">Coming soon</div> */}
+        </div>
+
+        <div class="dropdown">
+          <button class="dropbtn">
+            Tiers
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <Link to="/Gold" style={{ color: level.gold ? "black" : "grey" }}>
+              THE OGs
             </Link>
-            {/* <div className="hide">Coming soon</div> */}
-          </div>
-
-          <div className="gallery-nav">
             <Link
-              // to="/"
-              to="/mint"
+              to="/Silver"
+              style={{ color: level.silver ? "black" : "grey" }}
             >
-              Mint
+              THE BLAZERS
             </Link>
-            {/* <div className="hide">Coming soon</div> */}
+            <Link
+              to="/Bronze"
+              style={{ color: level.bronze ? "black" : "grey" }}
+            >
+              THE PRODIGY
+            </Link>
+            {/* <Link to="/Gold">THE AURICS</Link> */}
           </div>
-
-          <div className="gallery-nav">
-            <Link to="/Staking">Staking</Link>
-            {/* <div className="hide">Coming soon</div> */}
-          </div>
-
-          <div class="dropdown">
-    <button class="dropbtn">Tiers 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="/Gold">THE OGs</a>
-      <a href="/Silver">THE BLAZERS</a>
-      <a href="/Bronze">THE AURICS</a>
-      <a href="/Gold">THE PRODIGY</a>
-    </div>
-  </div> 
+        </div>
         {/* </div> */}
 
         {/* <div
