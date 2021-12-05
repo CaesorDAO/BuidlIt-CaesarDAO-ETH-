@@ -248,7 +248,7 @@ const style = {
   p: 4,
 };
 
-const ImageGrid = ({ properties, setProperties, account }) => {
+const ImageGrid = ({ properties, setProperties, account, onlyShowOpen }) => {
   const [apes, setApes] = useState(null);
   const [apeProp, setApeProp] = useState(null);
   const [open, setOpen] = useState(false);
@@ -259,6 +259,7 @@ const ImageGrid = ({ properties, setProperties, account }) => {
   const [totalSupply, setTotalSupply] = useState(0);
   const [updatedName, setUpdatedName] = useState("");
   const [namesList, setNamesList] = useState(null);
+  const [openForSaleList, setOpenForSaleList] = useState(null);
 
   const Fetch = async () => {
     // const url = "http://localhost:4000/gallery";
@@ -315,20 +316,6 @@ const ImageGrid = ({ properties, setProperties, account }) => {
     setUpdatedName(name);
   };
 
-  const fetchUpdatedNames = async () => {
-    let names = [];
-    for (let tokId = 1; tokId <= totalSupply; tokId++) {
-      const name = await CaesarNFT.methods.getName(tokId).call();
-      names.push(name);
-    }
-
-    console.log(names);
-    setNamesList(names);
-
-    // setUpdatedName(name);
-    // return name;
-  };
-
   useEffect(() => {
     setTradeStatus(false);
     setPrice(null);
@@ -344,8 +331,35 @@ const ImageGrid = ({ properties, setProperties, account }) => {
     fetchTotalSupply();
   }, []);
 
+  const fetchUpdatedNames = async () => {
+    let names = [];
+    for (let tokId = 1; tokId <= totalSupply; tokId++) {
+      const name = await CaesarNFT.methods.getName(tokId).call();
+      names.push(name);
+    }
+    console.log(names);
+    setNamesList(names);
+  };
+
+  const fetchOpenForSale = async () => {
+    let openForSale = [];
+
+    for (let tokId = 1; tokId <= totalSupply; tokId++) {
+      const trade = await CaesarMarketplace.methods.trades(tokId).call();
+      if (trade.status === openInHex) {
+        console.log(`${tokId} in open for sale`);
+        openForSale.push(tokId);
+      }
+    }
+
+    setOpenForSaleList(openForSale);
+  };
+
   useEffect(() => {
-    if (totalSupply > 0) fetchUpdatedNames();
+    if (totalSupply > 0) {
+      fetchUpdatedNames();
+      fetchOpenForSale();
+    }
   }, [totalSupply]);
 
   const ownerAddress = owner
@@ -372,7 +386,12 @@ const ImageGrid = ({ properties, setProperties, account }) => {
       {apes ? (
         <GridView>
           {apes.map((ape, index) => {
-            if (index >= totalSupply) return null;
+            if (ape.id > totalSupply) return null;
+            if (onlyShowOpen) {
+              if (!(openForSaleList && openForSaleList.includes(ape.id)))
+                return null;
+            }
+
             return (
               <div key={ape.id}>
                 <Card

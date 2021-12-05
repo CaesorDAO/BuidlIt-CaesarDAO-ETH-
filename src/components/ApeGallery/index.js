@@ -51,15 +51,22 @@ const Index = ({ account }) => {
     neckwear: "",
     skin: "",
   });
+  const [onlyShowOpen, setOnlyShowOpen] = useState(false);
 
   return (
     <>
       <Container>
-        <Filters properties={properties} setProperties={setProperties} />
+        <Filters
+          properties={properties}
+          setProperties={setProperties}
+          onlyShowOpen={onlyShowOpen}
+          setOnlyShowOpen={setOnlyShowOpen}
+        />
         <ImageGrid
           properties={properties}
           setProperties={setProperties}
           account={account}
+          onlyShowOpen={onlyShowOpen}
         />
       </Container>
       <ScrollButton />

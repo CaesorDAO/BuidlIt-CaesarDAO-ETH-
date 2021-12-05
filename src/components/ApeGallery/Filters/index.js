@@ -26,7 +26,7 @@ const Text = styled.div`
 `;
 
 const Filter = styled.div`
-  height: 600px;
+  height: 670px;
   width: 250px;
   position: absolute;
   background-color: #1b1b1b;
@@ -43,7 +43,7 @@ const Wallet = styled.div`
   width: 250px;
   position: absolute;
   background-color: #1b1b1b;
-  margin: 620px 0 0 0;
+  margin: 700px 0 0 0;
   padding: 10px 15px;
   border-radius: 10px;
 
@@ -126,7 +126,12 @@ const attributes = [
   },
 ];
 
-const Index = ({ properties, setProperties }) => {
+const Index = ({
+  properties,
+  setProperties,
+  setOnlyShowOpen,
+  onlyShowOpen,
+}) => {
   const [reset, setReset] = useState(false);
   const [tokenId, setTokenId] = useState("");
 
@@ -157,6 +162,14 @@ const Index = ({ properties, setProperties }) => {
             }}
           />
 
+          <button
+            className="reset"
+            style={{ marginTop: "10px" }}
+            onClick={() => setOnlyShowOpen(!onlyShowOpen)}
+          >
+            On Sale
+          </button>
+
           {attributes.map((attr) => {
             return (
               <Dropdown
@@ -186,6 +199,7 @@ const Index = ({ properties, setProperties }) => {
                 id: "",
               });
               setTokenId("");
+              setOnlyShowOpen(false);
               setReset(true);
             }}
           >
