@@ -305,10 +305,9 @@ const SellPrice = styled.h1`
 `;
 
 const CancelSell = styled.button`
-  display: inline-block;
+  display: block;
   align-items: right;
   float: right;
-  display: inline-block;
   border-radius: 5px;
   height: 40px;
   /* width: 80px; */
@@ -382,6 +381,7 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
   const [editingName, setEditingName] = useState(false);
   const [renameprice, setRenamePrice] = useState(0);
   const [updatedName, setUpdatedName] = useState("");
+  const [namesList, setNamesList] = useState(null);
 
   const Fetch = async () => {
     // const url = "http://localhost:4000/gallery";
@@ -422,6 +422,24 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
     const name = await CaesarNFT.methods.getName(apeProp.id).call();
     setUpdatedName(name);
   };
+
+  const fetchUpdatedNames = async () => {
+    let names = [];
+    ownedTokensList.map(async (tokId, index) => {
+      const name = await CaesarNFT.methods.getName(tokId).call();
+      names.push(name);
+    });
+
+    console.log(names);
+    setNamesList(names);
+
+    // setUpdatedName(name);
+    // return name;
+  };
+
+  useEffect(() => {
+    fetchUpdatedNames();
+  }, []);
 
   useEffect(() => {
     Fetch();
@@ -525,7 +543,12 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
                       // width="400px"
                       width="100%"
                     />
-                    <div className="id"> {ape ? `APE#${ape.id}` : ""}</div>
+                    {/* <div className="id"> {ape ? `APE#${ape.id}` : ""}</div> */}
+                    <div className="id">
+                      {namesList && namesList[ape.id - 1] !== ""
+                        ? namesList[ape.id - 1]
+                        : ape.name}
+                    </div>
                     {/* <div className="id"> Edit Id 
                     <img src={Edit} height="20px" className="edit"></img>
                     </div> */}

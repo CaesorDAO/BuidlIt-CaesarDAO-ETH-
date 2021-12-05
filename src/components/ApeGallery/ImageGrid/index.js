@@ -258,6 +258,7 @@ const ImageGrid = ({ properties, setProperties, account }) => {
   const [lastSoldPrice, setLastSoldPrice] = useState(null);
   const [totalSupply, setTotalSupply] = useState(0);
   const [updatedName, setUpdatedName] = useState("");
+  const [namesList, setNamesList] = useState(null);
 
   const Fetch = async () => {
     // const url = "http://localhost:4000/gallery";
@@ -314,6 +315,20 @@ const ImageGrid = ({ properties, setProperties, account }) => {
     setUpdatedName(name);
   };
 
+  const fetchUpdatedNames = async () => {
+    let names = [];
+    for (let tokId = 1; tokId <= totalSupply; tokId++) {
+      const name = await CaesarNFT.methods.getName(tokId).call();
+      names.push(name);
+    }
+
+    console.log(names);
+    setNamesList(names);
+
+    // setUpdatedName(name);
+    // return name;
+  };
+
   useEffect(() => {
     setTradeStatus(false);
     setPrice(null);
@@ -328,6 +343,10 @@ const ImageGrid = ({ properties, setProperties, account }) => {
   useEffect(() => {
     fetchTotalSupply();
   }, []);
+
+  useEffect(() => {
+    if (totalSupply > 0) fetchUpdatedNames();
+  }, [totalSupply]);
 
   const ownerAddress = owner
     ? owner.slice(0, 4) + "...." + owner.slice(-4)
@@ -372,8 +391,13 @@ const ImageGrid = ({ properties, setProperties, account }) => {
                       // width="400px"
                       width="100%"
                     />
-                    <div className="id"> APE#{ape.id}</div>
-                    {/* <button className="sell"> Sell </button> */}
+                    {/* <div className="id"> APE#{ape.id}</div> */}
+                    {/* <div className="id"> {ape.name}</div> */}
+                    <div className="id">
+                      {namesList && namesList[ape.id - 1] !== ""
+                        ? namesList[ape.id - 1]
+                        : ape.name}
+                    </div>
                   </ImgWrappers>
                 </Card>
               </div>
