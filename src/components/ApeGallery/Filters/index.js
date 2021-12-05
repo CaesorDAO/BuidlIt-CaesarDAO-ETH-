@@ -164,7 +164,12 @@ const Index = ({
 
           <button
             className="reset"
-            style={{ marginTop: "10px" }}
+            style={{
+              marginTop: "10px",
+              backgroundColor: "white",
+              color: "black",
+              fontWeight: "bold",
+            }}
             onClick={() => setOnlyShowOpen(!onlyShowOpen)}
           >
             On Sale

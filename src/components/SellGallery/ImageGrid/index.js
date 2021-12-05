@@ -425,21 +425,19 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
 
   const fetchUpdatedNames = async () => {
     let names = [];
-    ownedTokensList.map(async (tokId, index) => {
-      const name = await CaesarNFT.methods.getName(tokId).call();
+    for (let index = 0; index < ownedTokensList.length; index++) {
+      const name = await CaesarNFT.methods
+        .getName(ownedTokensList[index])
+        .call();
       names.push(name);
-    });
-
+    }
     console.log(names);
     setNamesList(names);
-
-    // setUpdatedName(name);
-    // return name;
   };
 
   useEffect(() => {
     fetchUpdatedNames();
-  }, []);
+  }, [ownedTokensList]);
 
   useEffect(() => {
     Fetch();
@@ -545,8 +543,8 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
                     />
                     {/* <div className="id"> {ape ? `APE#${ape.id}` : ""}</div> */}
                     <div className="id">
-                      {namesList && namesList[ape.id - 1] !== ""
-                        ? namesList[ape.id - 1]
+                      {namesList && namesList[index] !== ""
+                        ? namesList[index]
                         : ape.name}
                     </div>
                     {/* <div className="id"> Edit Id 
