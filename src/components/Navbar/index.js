@@ -17,7 +17,7 @@ const Navbars = ({ account, onConnectWallet, onDisconnect, level }) => {
             <img alt="" src={Image} className="logo" />{" "}
           </Link>
         </Navbar.Brand>
-
+{/* 
         <div
           className="gallery-nav"
           style={{
@@ -27,7 +27,7 @@ const Navbars = ({ account, onConnectWallet, onDisconnect, level }) => {
             borderRadius: "10px",
             padding: "10px",
           }}
-        >
+        > */}
           <div className="gallery-nav">
             <Link
               // to="/"
@@ -52,9 +52,21 @@ const Navbars = ({ account, onConnectWallet, onDisconnect, level }) => {
             <Link to="/Staking">Staking</Link>
             {/* <div className="hide">Coming soon</div> */}
           </div>
-        </div>
 
-        <div
+          <div class="dropdown">
+    <button class="dropbtn">Tiers 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="/Gold">THE OGs</a>
+      <a href="/Silver">THE BLAZERS</a>
+      <a href="/Bronze">THE AURICS</a>
+      <a href="/Gold">THE PRODIGY</a>
+    </div>
+  </div> 
+        {/* </div> */}
+
+        {/* <div
           className="gallery-nav"
           style={{
             display: "grid",
@@ -73,22 +85,7 @@ const Navbars = ({ account, onConnectWallet, onDisconnect, level }) => {
           <Link to="/Bronze" style={{ color: level.bronze ? "white" : "grey" }}>
             Bronze
           </Link>
-          {/* {level.gold ? (
-            <Link to="/Gold" style={{ color: level.gold ? "white" : "grey" }}>
-              Gold
-            </Link>
-          ) : null}
-          {level.silver ? (
-            <Link to="/Silver" style={{ color: level.gold ? "white" : "grey" }}>
-              Silver
-            </Link>
-          ) : null}
-          {level.bronze ? (
-            <Link to="/Bronze" style={{ color: level.gold ? "white" : "grey" }}>
-              Bronze
-            </Link>
-          ) : null} */}
-        </div>
+        </div> */}
 
         {account ? (
           <Button className="test2" onClick={onDisconnect}>
