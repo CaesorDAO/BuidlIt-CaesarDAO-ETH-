@@ -155,30 +155,37 @@ const SellGallery = ({ account }) => {
   // const [tokensList, setTokensList] = useState([]);
 
   const ownedTokens = async () => {
-    const ownedTokensArray = await CaesarNFT.methods
-      .walletQuery(account)
-      .call();
+    try {
+      const ownedTokensArray = await CaesarNFT.methods
+        .walletQuery(account)
+        .call();
 
-    setOwnedTokens(ownedTokensArray);
+      setOwnedTokens(ownedTokensArray);
 
-    // console.log("owned tokens array: ", ownedTokensArray);
+      // console.log("owned tokens array: ", ownedTokensArray);
 
-    // ownedTokensArray.map((tokenId) => {
-    //   setProperties({ id: tokenId });
-    // });
+      // ownedTokensArray.map((tokenId) => {
+      //   setProperties({ id: tokenId });
+      // });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const calcSaleTokens = async () => {
-    const saleTokensArray = await CaesarMarketplace.methods
-      .getSales(account)
-      .call();
-    setSaleTokensList(saleTokensArray);
+    try {
+      const saleTokensArray = await CaesarMarketplace.methods
+        .getSales(account)
+        .call();
+      setSaleTokensList(saleTokensArray);
 
-    // console.log("sale tokens array: ", saleTokensArray);
-
-    // await saleTokensArray.map((tokenId) => {
-    //   setProperties({ id: tokenId });
-    // });
+      // console.log("sale tokens array: ", saleTokensArray);
+      // await saleTokensArray.map((tokenId) => {
+      //   setProperties({ id: tokenId });
+      // });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {

@@ -45,7 +45,7 @@ const web3Modal = new Web3Modal({
 let provider;
 
 const App = () => {
-  const [account, setaccount] = useState("");
+  const [account, setaccount] = useState(null);
 
   const [gold, setGold] = useState(false);
   const [silver, setSilver] = useState(false);
