@@ -197,10 +197,14 @@ const Right = styled.div`
 const Edits = styled.h1`
   margin: 5px 0 0 20px;
   text-align: right;
-  font-size: 20px;
+  font-size: 15px;
 
   &:hover {
     cursor: pointer;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size:12px;
   }
 `;
 
@@ -289,6 +293,15 @@ const SellingPrice = styled.div`
   vertical-align: middle;
   padding-top: 10px;
 `;
+
+const NameChange = styled.div`
+font-size: 20px;
+padding: 0 0 0 20px;
+
+@media screen and (max-width: 600px) {
+  font-size:15px;
+}
+`
 
 const SellPrice = styled.h1`
   font-family: Roboto;
@@ -569,24 +582,26 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
                 <>
                   <div className="number">
                     {editingName ? (
-                      <>
+                      <div className="editname">
                         <input
                           type="name"
                           placeholder="New name"
+                          className="editid"
                           value={newName}
                           onChange={(e) => setNewName(e.target.value)}
                         ></input>
-                        <button onClick={onConfirmName}>Confirm</button>
-                      </>
+                        <button className="editconfirmbutton" onClick={onConfirmName}>Confirm</button>
+                      </div>
                     ) : (
                       <>
                         {updatedName === "" ? apeProp.name : updatedName}
                         <Edits onClick={() => setEditingName(true)}>
                           {" "}
-                          Edit Name
+                          Edit ID
                           <img src={Edit} height="16px" className="edit"></img>
                         </Edits>
-                        <div> {renameprice / 10 ** 18} CSR</div>
+                        {/* <div className="namechange"> {renameprice / 10 ** 18} CSR</div> */}
+                        <NameChange> {renameprice / 10 ** 18} CSR </NameChange>
                       </>
                     )}
                   </div>
