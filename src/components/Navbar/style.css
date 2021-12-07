@@ -1,13 +1,10 @@
 .app {
   background-color: black;
-
-  
   /* width: 100vw; */
 }
 
 .test {
-  background-color: black;
-
+  background-color: #000;
 }
 
 .logo {
@@ -19,7 +16,6 @@
 .text {
   color: white !important;
   background-color: black !important;
-
 }
 
 .test2 {
@@ -100,16 +96,10 @@
     height: 80px;
   }
 
-  .dropdown .dropbtn {
-    font-size: 18px;
-  }
-
   .gallery-nav a {
     font-size: 25px;
     margin-right: 30px;
   }
-
-
 
   .test2 {
     font-size: 18px !important;
@@ -133,14 +123,6 @@
     font-size: 18px;
     margin-right: 30px;
   }
-
-
-.dropdown .dropbtn {
-  font-size: 18px;
-}
-
-
-  
 
   .test2 {
     font-size: 15px !important;

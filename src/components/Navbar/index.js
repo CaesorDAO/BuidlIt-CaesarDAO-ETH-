@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Container, Button } from "react-bootstrap";
-import Image from "../../images/CaesorDAO.png";
+import Image from "../../images/image.png";
 import "./style.css";
 
 const Navbars = ({ account, onConnectWallet, onDisconnect, level }) => {
@@ -14,7 +14,7 @@ const Navbars = ({ account, onConnectWallet, onDisconnect, level }) => {
       <Container className="test">
         <Navbar.Brand>
           <Link to="/">
-            <img alt="" src={Image} className="logo"  />{" "}
+            <img alt="" src={Image} className="logo" />{" "}
           </Link>
         </Navbar.Brand>
         {/* 
@@ -45,7 +45,7 @@ const Navbars = ({ account, onConnectWallet, onDisconnect, level }) => {
           >
             Mint
           </Link>
-          
+          {/* <div className="hide">Coming soon</div> */}
         </div>
 
         <div className="gallery-nav">
