@@ -1,5 +1,7 @@
 import React from "react";
-
+// import "semantic-ui-css/semantic.min.css";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 import Discord from "../components/Discord";
 import Responsive from "../components/Gallery";
 import InfoSection from "../components/Hero/InfoSection";
@@ -17,7 +19,7 @@ import Demo from "../components/Demo";
 const Home = () => {
   return (
     <>
-      <Medium />
+      {/* <Medium /> */}
       {/* <Newsletter />
 
       <Responsive />
