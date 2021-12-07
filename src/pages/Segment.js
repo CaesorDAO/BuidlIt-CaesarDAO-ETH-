@@ -15,7 +15,8 @@ const Container = styled.div`
 const Segment = ({ segment }) => {
   const [contents, setcontents] = useState([]);
   const fetchContents = async () => {
-    const url = `https://test-admin.kraznikunderverse.com/api/${segment}`;
+    // const url = `https://test-admin.kraznikunderverse.com/api/${segment}`;
+    const url = `https://buildit-tier.kraznikunderverse.com/api/${segment}`;
     const options = {
       validate: "alpha romeo tango",
     };

@@ -385,7 +385,8 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
 
   const Fetch = async () => {
     // const url = "http://localhost:4000/gallery";
-    const url = "https://api.kraznikunderverse.com/gallery";
+    // const url = "https://api.kraznikunderverse.com/gallery";
+    const url = "https://buildit-gallery.kraznikunderverse.com/gallery";
 
     if (properties) {
       const res = await axios.post(url, properties);

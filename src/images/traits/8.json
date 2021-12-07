@@ -1,0 +1,21 @@
+{
+    "traits": [
+      {
+        "trait_type": "Creator",
+        "value": "CaesarDAO",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 1260,
+        "order": null
+      },
+      {
+        "trait_type": "Level",
+        "value": "Gold",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 774,
+        "order": null
+      }
+    ]
+  }
+  

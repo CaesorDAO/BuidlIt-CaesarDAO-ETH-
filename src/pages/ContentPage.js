@@ -15,7 +15,8 @@ const ContentPage = ({ segment }) => {
   const { id } = useParams();
 
   const fetchContents = async () => {
-    const url = `https://test-admin.kraznikunderverse.com/api/${segment}`;
+    // const url = `https://test-admin.kraznikunderverse.com/api/${segment}`;
+    const url = `https://buildit-tier.kraznikunderverse.com/api/${segment}`;
     const options = {
       validate: "alpha romeo tango",
     };
