@@ -197,7 +197,7 @@ const Right = styled.div`
 const Edits = styled.h1`
   margin: 5px 0 0 20px;
   text-align: right;
-  font-size: 15px;
+  font-size: 20px;
 
   &:hover {
     cursor: pointer;
@@ -292,15 +292,6 @@ const SellingPrice = styled.div`
   text-align: center;
   vertical-align: middle;
   padding-top: 10px;
-`;
-
-const NameChange = styled.div`
-  font-size: 20px;
-  padding: 0 0 0 20px;
-
-  @media screen and (max-width: 600px) {
-    font-size: 15px;
-  }
 `;
 
 const SellPrice = styled.h1`
@@ -582,11 +573,10 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
                 <>
                   <div className="number">
                     {editingName ? (
-                      <div className="editname">
+                      <>
                         <input
                           type="name"
                           placeholder="New name"
-                          className="editid"
                           value={newName}
                           onChange={(e) => setNewName(e.target.value)}
                         ></input>
@@ -596,17 +586,16 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
                         >
                           Confirm
                         </button>
-                      </div>
+                      </>
                     ) : (
                       <>
                         {updatedName === "" ? apeProp.name : updatedName}
                         <Edits onClick={() => setEditingName(true)}>
                           {" "}
-                          Edit ID
+                          Edit Name
                           <img src={Edit} height="16px" className="edit"></img>
                         </Edits>
-                        {/* <div className="namechange"> {renameprice / 10 ** 18} CSR</div> */}
-                        <NameChange> {renameprice / 10 ** 18} CSR </NameChange>
+                        <div> {renameprice / 10 ** 18} CSR</div>
                       </>
                     )}
                   </div>
