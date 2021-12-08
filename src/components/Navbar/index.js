@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Container, Button } from "react-bootstrap";
-import Image from "../../images/logo.png";
+import Image from "../../images/image.png";
 import "./style.css";
 
 const Navbars = ({ account, onConnectWallet, onDisconnect, level }) => {
