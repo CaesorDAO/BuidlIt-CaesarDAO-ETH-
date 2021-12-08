@@ -204,7 +204,7 @@ const Edits = styled.h1`
   }
 
   @media screen and (max-width: 600px) {
-    font-size:12px;
+    font-size: 12px;
   }
 `;
 
@@ -295,13 +295,13 @@ const SellingPrice = styled.div`
 `;
 
 const NameChange = styled.div`
-font-size: 20px;
-padding: 0 0 0 20px;
+  font-size: 20px;
+  padding: 0 0 0 20px;
 
-@media screen and (max-width: 600px) {
-  font-size:15px;
-}
-`
+  @media screen and (max-width: 600px) {
+    font-size: 15px;
+  }
+`;
 
 const SellPrice = styled.h1`
   font-family: Roboto;
@@ -479,7 +479,7 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
     console.log("token id to sell: ", tokenId);
     console.log("price to sell: ", sellPrice);
     await CaesarMarketplace.methods
-      .openTrade(tokenId, sellPrice)
+      .openTrade(tokenId, sellPrice * 10 ** 18)
       .send({ from: account });
     window.location.reload();
   };
@@ -590,7 +590,12 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
                           value={newName}
                           onChange={(e) => setNewName(e.target.value)}
                         ></input>
-                        <button className="editconfirmbutton" onClick={onConfirmName}>Confirm</button>
+                        <button
+                          className="editconfirmbutton"
+                          onClick={onConfirmName}
+                        >
+                          Confirm
+                        </button>
                       </div>
                     ) : (
                       <>
@@ -652,7 +657,7 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
                           <SellContainer>
                             <SellingPrice>
                               <SellPrice>
-                                Selling Price : {tradePrice} Matic{" "}
+                                Selling Price : {tradePrice / 10 ** 18} MATIC{" "}
                               </SellPrice>
                             </SellingPrice>
                             <CancelSell

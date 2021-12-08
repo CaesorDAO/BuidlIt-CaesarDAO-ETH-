@@ -24,7 +24,7 @@ const Balance = ({ account }) => {
         <Title> Account Balance </Title>
 
         <AccountBalance>
-          <Balances> {tokenBalance}</Balances>
+          <Balances> {tokenBalance.toFixed(3)}</Balances>
         </AccountBalance>
         <Token>$CSR</Token>
       </Container>

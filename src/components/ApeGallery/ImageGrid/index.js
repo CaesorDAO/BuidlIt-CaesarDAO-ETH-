@@ -454,12 +454,16 @@ const ImageGrid = ({ properties, setProperties, account, onlyShowOpen }) => {
                               Buy Now{" "}
                             </button> */}
                             <NotOnSale onClick={onBuy}> Buy now </NotOnSale>
-                            <div className="worth">Price: {price} </div>
+                            <div className="worth">
+                              Price: {price / 10 ** 18} MATIC
+                            </div>
                           </>
                         ) : (
                           <>
                             <NotOnSale> Not on sale</NotOnSale>
-                            <div className="worth">Worth: {lastSoldPrice} </div>
+                            <div className="worth">
+                              Last sold price: {lastSoldPrice / 10 ** 18} MATIC
+                            </div>
                           </>
                         )}
 
