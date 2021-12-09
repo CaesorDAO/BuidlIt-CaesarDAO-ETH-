@@ -141,12 +141,10 @@ const Heading = styled.div`
 const SellGallery = ({ account }) => {
   const [properties, setProperties] = useState({
     bg: "",
-    clothes: "",
-    eye: "",
+    cloth: "",
     eyewear: "",
-    headwear: "",
-    mouthCosmetics: "",
-    neckwear: "",
+    gender: "",
+    hair: "",
     skin: "",
   });
 

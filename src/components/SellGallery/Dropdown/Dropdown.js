@@ -17,12 +17,10 @@ const MenuProps = {
 
 const AttrNameMapping = {
   bg: "Background",
-  clothes: "Clothes",
-  eye: "Eye",
+  cloth: "Clothes",
   eyewear: "Eyewear",
-  headwear: "Headwear",
-  mouthCosmetics: "Mouth",
-  neckwear: "Neckwear",
+  gender: "Gender",
+  hair: "Hair",
   skin: "Skin",
 };
 
@@ -43,35 +41,25 @@ export default function SelectVariants({
         ...properties,
         bg: e.target.value,
       });
-    } else if (attribute === "clothes") {
+    } else if (attribute === "cloth") {
       setProperties({
         ...properties,
-        clothes: e.target.value,
-      });
-    } else if (attribute === "eye") {
-      setProperties({
-        ...properties,
-        eye: e.target.value,
+        cloth: e.target.value,
       });
     } else if (attribute === "eyewear") {
       setProperties({
         ...properties,
         eyewear: e.target.value,
       });
-    } else if (attribute === "headwear") {
+    } else if (attribute === "gender") {
       setProperties({
         ...properties,
-        headwear: e.target.value,
+        gender: e.target.value,
       });
-    } else if (attribute === "mouthCosmetics") {
+    } else if (attribute === "hair") {
       setProperties({
         ...properties,
-        mouthCosmetics: e.target.value,
-      });
-    } else if (attribute === "neckwear") {
-      setProperties({
-        ...properties,
-        neckwear: e.target.value,
+        hair: e.target.value,
       });
     } else if (attribute === "skin") {
       setProperties({
@@ -96,39 +84,38 @@ export default function SelectVariants({
 
   return (
     <>
-    <div>
-      <FormControl
-        className="form"
-        variant="standard"
-        sx={{ m: 1, minWidth: 180 }}
-      >
-        <InputLabel className="input" id="demo-simple-select-standard-label">
-          {AttrNameMapping[attribute]}
-        </InputLabel>
-        <Select
-          className="select"
-          labelId="demo-simple-select-standard-label"
-          id="demo-simple-select-standard"
-          value={property}
-          onChange={handleChange}
-          label={AttrNameMapping[attribute]}
-          // className="select-dropdown"
-          MenuProps={MenuProps}
+      <div>
+        <FormControl
+          className="form"
+          variant="standard"
+          sx={{ m: 1, minWidth: 180 }}
         >
-          <MenuItem value="" className="menu">
-            <em>None</em>
-          </MenuItem>
-          {traitTypes.map((ele) => {
-            return (
-              <MenuItem key={ele} value={ele}>
-                {ele}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
-    </div>
+          <InputLabel className="input" id="demo-simple-select-standard-label">
+            {AttrNameMapping[attribute]}
+          </InputLabel>
+          <Select
+            className="select"
+            labelId="demo-simple-select-standard-label"
+            id="demo-simple-select-standard"
+            value={property}
+            onChange={handleChange}
+            label={AttrNameMapping[attribute]}
+            // className="select-dropdown"
+            MenuProps={MenuProps}
+          >
+            <MenuItem value="" className="menu">
+              <em>None</em>
+            </MenuItem>
+            {traitTypes.map((ele) => {
+              return (
+                <MenuItem key={ele} value={ele}>
+                  {ele}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+      </div>
     </>
-    
   );
 }

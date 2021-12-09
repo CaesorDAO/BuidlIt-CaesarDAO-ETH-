@@ -87,19 +87,20 @@ const attributes = [
     traitTypes: ["Blue", "Black", "Lime", "Teal"],
   },
   {
-    name: "clothes",
+    name: "cloth",
     traitTypes: ["Hoodie", "Jersey", "Uniform", "Diamond Hands"],
   },
-  {
-    name: "eye",
-    traitTypes: ["Stoner Eyes", "Eyelashes", "Green Glow", "Warrior Eyes"],
-  },
+
   {
     name: "eyewear",
     traitTypes: ["3D Glasses", "Eyepatch", "Heart Glasses", "Sunglass"],
   },
   {
-    name: "headwear",
+    name: "gender",
+    traitTypes: ["Male", "Female"],
+  },
+  {
+    name: "hair",
     traitTypes: [
       "Angel",
       "Ancient",
@@ -109,14 +110,6 @@ const attributes = [
       "Sheikh",
       "Headphones",
     ],
-  },
-  {
-    name: "mouthCosmetics",
-    traitTypes: ["Pipe", "Podcast", "Bubble Gum", "Knife", "Fiat"],
-  },
-  {
-    name: "neckwear",
-    traitTypes: ["Bow", "Muffler", "Dog Tag", "Black Panther", "Scarf"],
   },
   {
     name: "skin",
@@ -174,12 +167,10 @@ const Index = ({ properties, setProperties }) => {
             onClick={() => {
               setProperties({
                 bg: "",
-                clothes: "",
-                eye: "",
+                cloth: "",
                 eyewear: "",
-                headwear: "",
-                mouthCosmetics: "",
-                neckwear: "",
+                gender: "",
+                hair: "",
                 skin: "",
                 id: "",
               });
