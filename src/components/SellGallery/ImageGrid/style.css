@@ -65,7 +65,7 @@
   border: solid 3px #fff;
   background-color: #161818;
   font-family: Roboto;
-  font-size: 30px;
+  font-size: 20px;
   text-align: left;
   color: #fff;
   top: 100%;
@@ -148,10 +148,34 @@
 }
 
 .edit {
-  margin: 0 0 0 10px;
+  margin: 0 0 0 12px;
+  padding: 0 0 1px 0 ;
+
+  @media only screen and (max-width: 320px) {
+     {
+      font-size: 10px;
+    }
+  }
 }
 
 .edit-id {
   margin: 5px 0 0 20px;
   text-align: right;
+}
+
+
+
+
+.editid{
+
+width: 150px;
+font-size: 15px;
+}
+
+.editconfirmbutton{
+
+  width: 80px;
+  font-size: 15px;
+  outline: none;
+
 }
