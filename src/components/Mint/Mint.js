@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import MacBookPro from "../../images/MacBookPro.png";
+import MacBookPro from "../../images/mint.png";
 import Modal from "./Modal/Modal";
 
 import {
