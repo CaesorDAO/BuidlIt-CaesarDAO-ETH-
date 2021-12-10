@@ -262,9 +262,9 @@ const ImageGrid = ({ properties, setProperties, account, onlyShowOpen }) => {
   const [openForSaleList, setOpenForSaleList] = useState(null);
 
   const Fetch = async () => {
-    // const url = "http://localhost:4000/gallery";
+    const url = "http://localhost:4000/gallery";
     // const url = "https://api.kraznikunderverse.com/gallery";
-    const url = "https://buildit-gallery.kraznikunderverse.com/gallery";
+    // const url = "https://buildit-gallery.kraznikunderverse.com/gallery";
     if (properties) {
       const res = await axios.post(url, properties);
       // console.log(res.data);
@@ -480,38 +480,20 @@ const ImageGrid = ({ properties, setProperties, account, onlyShowOpen }) => {
                         Rarity Rank : {apeProp.rarityRank}
                         {/* Null */}
                       </Rank>
-
-                      <Heading> Headwear </Heading>
-                      <Trait>
-                        {" "}
-                        {apeProp.headwear ? apeProp.headwear : "None"}
-                      </Trait>
+                      <Heading> Gender </Heading>
+                      <Trait> {apeProp.gender ? apeProp.gender : "None"}</Trait>
+                      <Heading> Hair </Heading>
+                      <Trait> {apeProp.hair ? apeProp.hair : "None"}</Trait>
                       <Heading> Skin </Heading>
                       <Trait> {apeProp.skin ? apeProp.skin : "None"}</Trait>
-                      <Heading> Eye </Heading>
-                      <Trait> {apeProp.eye ? apeProp.eye : "None"}</Trait>
                       <Heading> Eyewear </Heading>
                       <Trait>
                         {" "}
                         {apeProp.eyewear ? apeProp.eyewear : "None"}
                       </Trait>
-                      <Heading> Mouth Cosmetics </Heading>
-                      <Trait>
-                        {" "}
-                        {apeProp.mouthCosmetics
-                          ? apeProp.mouthCosmetics
-                          : "None"}
-                      </Trait>
+
                       <Heading> Clothes </Heading>
-                      <Trait>
-                        {" "}
-                        {apeProp.clothes ? apeProp.clothes : "None"}
-                      </Trait>
-                      <Heading> Neckwear </Heading>
-                      <Trait>
-                        {" "}
-                        {apeProp.neckwear ? apeProp.neckwear : "None"}
-                      </Trait>
+                      <Trait> {apeProp.cloth ? apeProp.cloth : "None"}</Trait>
                       <Heading> Background </Heading>
                       <Trait> {apeProp.bg ? apeProp.bg : "None"}</Trait>
                     </Right>

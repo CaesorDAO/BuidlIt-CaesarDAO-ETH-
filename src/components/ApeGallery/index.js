@@ -43,12 +43,10 @@ const Container = styled.div`
 const Index = ({ account }) => {
   const [properties, setProperties] = useState({
     bg: "",
-    clothes: "",
-    eye: "",
+    cloth: "",
     eyewear: "",
-    headwear: "",
-    mouthCosmetics: "",
-    neckwear: "",
+    gender: "",
+    hair: "",
     skin: "",
   });
   const [onlyShowOpen, setOnlyShowOpen] = useState(false);
