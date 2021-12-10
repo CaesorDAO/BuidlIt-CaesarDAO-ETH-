@@ -28,6 +28,7 @@ export const TextWrapper = styled.div`
   padding: 10px 0 0 0;
   position: absolute;
   display: grid;
+  margin: 100px 0 0 0;
 `;
 
 export const Img = styled.img`
@@ -40,17 +41,19 @@ export const Img = styled.img`
 export const Title = styled.h1`
   font-family: Roboto;
   font-size: 45px;
+  width: 350px;
   font-weight: bold;
   font-style: normal;
   text-align: left;
   color: white;
+
   margin: 100px 0 0 100px;
 `;
 
 export const Description = styled.p`
   font-size: 15px;
   color: grey;
-  width: 250px;
+  width: 400px;
   position: relative;
   text-align: left;
   margin: 20px 0 0 0;
@@ -58,7 +61,7 @@ export const Description = styled.p`
 `;
 
 export const WatchNow = styled(Link)`
-  /* height: 50px; */
+  
   width: fit-content;
   padding: 5px 10px;
   background-color: #26b14b;

@@ -4,11 +4,11 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   background-color: #1b1b1b;
-  width: 1100px;
+  width: 1060px;
   height: 800px;
   border-radius: 20px;
   margin: auto;
-  padding: 75px 0 0 50px;
+  padding: 75px 0 0 60px;
 `;
 
 export const VideoWrapper = styled.div`
@@ -21,7 +21,7 @@ export const VideoWrapper = styled.div`
 export const TextWrapper = styled.div`
   // background-color: white;
   height: 200px;
-  width: 1000px;
+  width: 920px;
   padding: 0 0 0 50px;
 `;
 
