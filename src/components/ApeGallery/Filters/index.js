@@ -26,7 +26,7 @@ const Text = styled.div`
 `;
 
 const Filter = styled.div`
-  height: 670px;
+  height: 550px;
   width: 250px;
   position: absolute;
   background-color: #1b1b1b;
@@ -43,7 +43,7 @@ const Wallet = styled.div`
   width: 250px;
   position: absolute;
   background-color: #1b1b1b;
-  margin: 700px 0 0 0;
+  margin: 580px 0 0 0;
   padding: 10px 15px;
   border-radius: 10px;
 
