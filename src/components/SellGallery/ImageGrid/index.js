@@ -480,7 +480,7 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
     console.log("token id to sell: ", tokenId);
     console.log("price to sell: ", sellPrice);
     await CaesarMarketplace.methods
-      .openTrade(tokenId, sellPrice * 10 ** 18)
+      .openTrade(tokenId, (sellPrice * 10 ** 18).toString()) 
       .send({ from: account });
     window.location.reload();
   };
