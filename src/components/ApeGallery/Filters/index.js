@@ -86,16 +86,16 @@ const SearchBar = styled.input`
 const attributes = [
   {
     name: "bg",
-    traitTypes: ["Blue", "Black", "Lime", "Teal"],
+    traitTypes: ["Lavender", "Crayola's Dandelion", "Light Cobalt Blue", "Teal"],
   },
   {
     name: "cloth",
-    traitTypes: ["Hoodie", "Jersey", "Uniform", "Diamond Hands"],
+    traitTypes: ["Kurta.001", "T-Shirt.002", "Shirt.001", "Hoodie.001", "Suit.001", "NightWear.001", "Off Shoulder.001","Sport Bra.001","Boat Neck.001",""],
   },
 
   {
     name: "eyewear",
-    traitTypes: ["3D Glasses", "Eyepatch", "Heart Glasses", "Sunglass"],
+    traitTypes: ["Wayfarer.001", "Royal Sunglass.001", "ThugLife.001", "3D Glass.001","Royal Sunglass.001","Lipstick.001","Necklace.001","Ear Ring.001","Nose Ring.001","Piercing.001"],
   },
   {
     name: "gender",
@@ -104,18 +104,17 @@ const attributes = [
   {
     name: "hair",
     traitTypes: [
-      "Angel",
-      "Ancient",
-      "Cap",
-      "Cover",
-      "Mask",
-      "Sheikh",
-      "Headphones",
+      "Hair 3.001","Hair 4.001","Hair 2.001","Hair 1.001","Hair 5.001",
+      "Double Bun.001",
+      "Open Hair.001",
+      "Single Bun.001",
+      "Pony Tail.001",
+      "Double Bun Open Hair.001"
     ],
   },
   {
     name: "skin",
-    traitTypes: ["Radiation", "Blue", "Black", "Dragon Skin", "Wood"],
+    traitTypes: ["White Male.001", "Brown Male.001", "Blue Male.001", "Black Male.001", "Dual Skin Male.001", "White Female.001", "Green Female.001", "Brown Female.001", "Dual Female.001", "Black Female.001"],
   },
 ];
 

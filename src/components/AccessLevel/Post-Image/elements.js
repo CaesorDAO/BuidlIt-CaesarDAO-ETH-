@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const OuterContainer = styled.div``;
 
 export const Container = styled.div`
-  height: 500px;
-  width: 300px;
+  height: 400px;
+  width: 290px;
   color: white;
   /* display: flex;
   flex-direction: column; */
@@ -29,16 +29,16 @@ export const Container = styled.div`
 export const ImgWrapper = styled.div`
   /* display: center; */
   width: 300px;
-  height: 300px;
+  height: 190px;
   margin: auto;
   display: grid;
-  background-color: white;
-  justify-items: center;
+  background-color: #1b1b1b;
+  justify-content: center;
   border-radius: 10px;
 `;
 
 export const TextWrapper = styled.div`
-  max-width: 600px;
+  max-width: 300px;
 `;
 
 export const Img = styled.img`
@@ -49,6 +49,7 @@ export const Img = styled.img`
 export const Title = styled.h1`
   font-family: Roboto;
   font-size: 30px;
+
   font-weight: bold;
   font-style: normal;
   text-align: center;
@@ -67,4 +68,6 @@ export const Description = styled.p`
 export const Video = styled.iframe`
   display: grid;
   align-self: center;
+  justify-self: center;
+  width: 300px;
 `;

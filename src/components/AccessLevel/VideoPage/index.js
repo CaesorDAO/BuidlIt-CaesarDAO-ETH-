@@ -15,7 +15,7 @@ const Videopage = ({ content, segment }) => {
         <VideoWrapper>
           <iframe
             title="vimeo-player"
-            src={content.video}
+            src={content ? content.video : null}
             width="1000"
             height="500"
             border-radius="20px"
