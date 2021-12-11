@@ -267,7 +267,7 @@ const ImageGrid = ({ properties, setProperties, account, onlyShowOpen }) => {
     // const url = "https://buildit-gallery.kraznikunderverse.com/gallery";
     if (properties) {
       const res = await axios.post(url, properties);
-      // console.log(res.data);
+      console.log(res.data);
       setApes(res.data.data);
     }
   };

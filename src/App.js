@@ -143,7 +143,7 @@ const App = () => {
 
           await data.traits.map((trait) => {
             //   console.log(trait);
-            if (trait.trait_type === "Level") {
+            if (trait.trait_type === "Tier") {
               console.log(trait.value);
               if (trait.value === "Gold") setGold(true);
               else if (trait.value === "Silver") setSilver(true);

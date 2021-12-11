@@ -295,14 +295,12 @@ const SellingPrice = styled.div`
 `;
 
 const NameChange = styled.div`
-font-size: 20px;
-padding: 0 0 0 20px;
-@media screen and (max-width: 600px) {
-  font-size:15px;
-}
-`
-
-
+  font-size: 20px;
+  padding: 0 0 0 20px;
+  @media screen and (max-width: 600px) {
+    font-size: 15px;
+  }
+`;
 
 const SellPrice = styled.h1`
   font-family: Roboto;
@@ -480,7 +478,7 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
     console.log("token id to sell: ", tokenId);
     console.log("price to sell: ", sellPrice);
     await CaesarMarketplace.methods
-      .openTrade(tokenId, sellPrice * 10 ** 18)
+      .openTrade(tokenId, (sellPrice * 10 ** 18).toString())
       .send({ from: account });
     window.location.reload();
   };
@@ -580,32 +578,37 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
           >
             <Box sx={style} className="popup-containers">
               {apeProp ? (
-                              <>
-                              <div className="number">
-                                {editingName ? (
-                                  <div className="editname">
-                                    <input
-                                      type="name"
-                                      placeholder="New name"
-                                      className="editid"
-                                      value={newName}
-                                      onChange={(e) => setNewName(e.target.value)}
-                                    ></input>
-                                    <button className="editconfirmbutton" onClick={onConfirmName}>Confirm</button>
-                                  </div>
-                                ) : (
-                                  <>
-                                    {updatedName === "" ? apeProp.name : updatedName}
-                                    <Edits onClick={() => setEditingName(true)}>
-                                      {" "}
-                                      Edit ID
-                                      <img src={Edit} height="16px" className="edit"></img>
-                                    </Edits>
-                                    {/* <div className="namechange"> {renameprice / 10 ** 18} CSR</div> */}
-                                    <NameChange> {renameprice / 10 ** 18} CSR </NameChange>
-                                  </>
-                                )}
-                              </div>
+                <>
+                  <div className="number">
+                    {editingName ? (
+                      <div className="editname">
+                        <input
+                          type="name"
+                          placeholder="New name"
+                          className="editid"
+                          value={newName}
+                          onChange={(e) => setNewName(e.target.value)}
+                        ></input>
+                        <button
+                          className="editconfirmbutton"
+                          onClick={onConfirmName}
+                        >
+                          Confirm
+                        </button>
+                      </div>
+                    ) : (
+                      <>
+                        {updatedName === "" ? apeProp.name : updatedName}
+                        <Edits onClick={() => setEditingName(true)}>
+                          {" "}
+                          Edit ID
+                          <img src={Edit} height="16px" className="edit"></img>
+                        </Edits>
+                        {/* <div className="namechange"> {renameprice / 10 ** 18} CSR</div> */}
+                        <NameChange> {renameprice / 10 ** 18} CSR </NameChange>
+                      </>
+                    )}
+                  </div>
 
                   <Content onClick={() => setEditingName(false)}>
                     <Left>
