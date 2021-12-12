@@ -379,7 +379,8 @@ const style = {
 };
 
 var currentSellingPrice = "50";
-const marketplaceContractAddress = "0x924088B2f8FEB5fF02C169B24AF5525d3339453c";
+const marketplaceContractAddress = "0x5A7BE2cbfE804EEdeCF6B646405668c29DD9b6C2";
+// "0x924088B2f8FEB5fF02C169B24AF5525d3339453c";
 
 const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
   const [apes, setApes] = useState([]);
@@ -490,7 +491,8 @@ const ImageGrid = ({ properties, setProperties, ownedTokensList, account }) => {
     window.location.reload();
   };
 
-  const nftContractAddress = "0xD58d8C5274483B761BB375243F1cC88adBa151C5";
+  const nftContractAddress = "0x9F6c1bfEc7Af15b92BDC4f0567F9c8f1D39872D8";
+  // "0xD58d8C5274483B761BB375243F1cC88adBa151C5";
 
   const onConfirmName = async () => {
     if (apeProp) {
