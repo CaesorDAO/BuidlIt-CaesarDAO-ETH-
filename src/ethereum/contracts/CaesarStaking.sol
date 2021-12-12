@@ -28,6 +28,10 @@ contract CaesarStaking is Ownable, IERC721Receiver, ReentrancyGuard, Pausable {
     mapping(address => EnumerableSet.UintSet) private _deposits;
     mapping(address => mapping(uint256 => uint256)) public _depositBlocks;
 
+    //1.unpause 
+    //2.transfer CSR tokens to staking contract for reward distrution
+
+
     constructor(
       address _stakingDestinationAddress,
       uint256 _rate,
@@ -35,11 +39,12 @@ contract CaesarStaking is Ownable, IERC721Receiver, ReentrancyGuard, Pausable {
       address _erc20Address
     ) {
         stakingDestinationAddress = _stakingDestinationAddress;
-        rate = _rate;
-        expiration = block.number + _expiration;
+        rate = _rate; // 0.1 tokens per minute // 17 * 10**15 on polygon // 17 * 10**16 on ethereum // 10000000000000000 = 10^16
+        expiration = block.number + _expiration; // 10 ** 8 more than 1 week
         erc20Address = _erc20Address;
         _pause();
     }
+    // 1000 CSR sent to staking contract
 
     function pause() public onlyOwner {
         _pause();

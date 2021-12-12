@@ -1307,6 +1307,7 @@ pragma solidity ^0.8.0;
 
 import {IERC20, SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
+//1. flip sale state
 
 contract CaesarNFT is ERC721Enumerable, Ownable {
     using Strings for uint256;
@@ -1319,9 +1320,9 @@ contract CaesarNFT is ERC721Enumerable, Ownable {
     
     uint256 public reserve = 1100;
     uint256 public constant caesarSupply = 10000;
-    uint256 public caesarPrice = 1000 wei;
+    uint256 public caesarPrice = 0.1 ether; // on ethereum // 0.1 MATIC on polygon
     bool public saleActive = false;
-    uint256 public renamePrice = 100 wei;
+    uint256 public renamePrice = 0.1 ether; // 0.1 CSR tokens
 
     mapping(uint256 => string) private names;
 
@@ -1462,6 +1463,15 @@ contract CaesarNFT is ERC721Enumerable, Ownable {
     function getName(uint256 _tokenId) public view returns (string memory) {
         return names[_tokenId];
     }
+
+    // function getNames() public view returns (string[] memory) {
+    //     string[] memory namesList;
+    //     for(uint256 tokId=1; tokId <= totalSupply(); tokId++) {
+    //         string memory name = getName(tokId);
+    //         namesList.push(name);
+    //     }
+    //     return namesList;
+    // }
 
     function updateRenamePrice(uint256 _newRenamePrice) public onlyOwner {
         renamePrice = _newRenamePrice;

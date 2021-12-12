@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 // Example class - a mock class using delivering from ERC20
 contract CSRToken is ERC20 {
     constructor(uint256 initialBalance) ERC20("CaesarToken", "CSR") {
-        _mint(msg.sender, initialBalance);
+        _mint(msg.sender, initialBalance); // 1,000,000 tokens
     }
 }
 
