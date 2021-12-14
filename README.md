@@ -1,43 +1,4 @@
-# Kraznik Underverse Development
 
-## Firebase Hosting
-
-```
-> firebase login (from krazniklabs@gmail.com)
-> firebase init
-- choose the project - Kraznik Underverse
-```
-
-### To add a new project environment,
-
-- choosing a new project for that env, and then the alias for that env like {default, staging}
-
-```
-> firebase use --add
-```
-
-### To deploy to a development environment
-
-```
-> firebase use staging
-> npm run build && firebase deploy
-```
-
-### to deploy to the production environment
-
-```
-> firebase use default
-> npm run build && firebase deploy
-```
-
-> Development link:
-
-- https://test-website-51d9c.web.app/
-
-> Production link:
-
-- https://kraznikunderverse.com/
-- https://kraznik-underverse-e955a.web.app/
 
 # Getting Started with Create React App
 
