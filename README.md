@@ -1,4 +1,4 @@
-
+We have used boiler plate templatels for the basic Frontend for the CAesorDAO  and also have used open source projects (like Mutant CATS and HeadDAO) to refer the staking contract, other than that we have built like 80% of the project during the hack (only 20% is pre used), one can verify by going over the commits we made during the timespan of the project
 
 # Getting Started with Create React App
 
